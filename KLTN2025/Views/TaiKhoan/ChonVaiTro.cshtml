@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Chọn vai trò đăng nhập / đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center py-5">
+    <h2 class="fw-bold text-primary mb-4">Chọn vai trò để đăng nhập hoặc đăng ký</h2>
+    <p class="text-muted mb-5">Vui lòng chọn vai trò phù hợp để hệ thống hiển thị đúng giao diện và chức năng dành riêng cho bạn.</p>
+
+    <div class="row g-4 justify-content-center">
+        <!-- GIA SƯ -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4 hover-card h-100">
+                <img src="/img/phuhuynh.jpg" class="card-img-top mb-3 rounded-3" alt="Gia sư" style="height:220px;object-fit:cover;" />
+                <h4 class="fw-semibold text-primary">Dành cho Gia sư</h4>
+                <p class="text-muted">Quản lý hồ sơ, xem lớp học, ứng tuyển và theo dõi tiến độ giảng dạy.</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="/TaiKhoan/DangNhap?role=giasu" class="btn btn-outline-primary fw-semibold px-3">Đăng nhập</a>
+                    <a href="/TaiKhoan/DangKy?role=giasu" class="btn btn-primary fw-semibold px-3">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHỤ HUYNH -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4 hover-card h-100">
+                <img src="/img/Phụ huynh.jpg" class="card-img-top mb-3 rounded-3" alt="Phụ huynh" style="height:220px;object-fit:cover;" />
+                <h4 class="fw-semibold text-success">Dành cho Phụ huynh</h4>
+                <p class="text-muted">Tìm gia sư, quản lý buổi học và đánh giá chất lượng giảng dạy dễ dàng.</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="/TaiKhoan/DangNhap?role=phuhuynh" class="btn btn-outline-success fw-semibold px-3">Đăng nhập</a>
+                    <a href="/TaiKhoan/DangKy?role=phuhuynh" class="btn btn-success fw-semibold px-3">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

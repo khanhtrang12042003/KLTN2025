@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Quên mật khẩu - Trung tâm Gia sư Amsterdam Bảo Tuân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 p-4">
+                <h3 class="fw-bold text-center mb-4 text-primary">Quên mật khẩu</h3>
+
+                <p class="text-muted text-center mb-4">
+                    Nhập địa chỉ email của bạn, chúng tôi sẽ gửi liên kết để đặt lại mật khẩu.
+                </p>
+
+                <form method="post" action="/TaiKhoan/QuenMatKhau">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" name="email" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-semibold">Gửi yêu cầu</button>
+
+                    <div class="text-center mt-3">
+                        <a href="/TaiKhoan/DangNhap" class="text-decoration-none small text-muted">Quay lại đăng nhập</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,187 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- ========== HERO SECTION ========== -->
+<section class="hero py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                <h1 class="display-5 fw-bold mb-3">
+                    Cùng <span>Amsterdam Bảo Tuân</span>
+                    giúp con học tốt hơn mỗi ngày
+                </h1>
+                <p class="lead mb-4">
+                    Đội ngũ gia sư chất lượng – Phương pháp hiệu quả – Cam kết tiến bộ rõ rệt chỉ sau 10 buổi học.
+                </p>
+                <a href="#services" class="btn btn-primary btn-lg me-3">Xem dịch vụ</a>
+                <a href="#contact" class="btn btn-outline-primary btn-lg">Liên hệ ngay</a>
+            </div>
+            <div class="col-lg-6 text-center animate__animated animate__fadeInRight">
+                <img src="~/img/phuhuynh.jpg" alt="Gia sư dạy học" class="hero-img" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== GIỚI THIỆU ========== -->
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">Giới thiệu về nền tảng</h2>
+        <p class="text-muted">Hệ thống giúp phụ huynh dễ dàng tìm kiếm gia sư phù hợp, và gia sư có thể quản lý lớp học, hồ sơ, cũng như ứng tuyển nhanh chóng.</p>
+    </div>
+
+    <!-- ========== ROLE CARDS THAY THẾ PHẦN CŨ ========== -->
+    <section class="role-cards" id="roles">
+        <div class="container">
+            <div class="role-cards-grid">
+                <!-- PHỤ HUYNH -->
+                <div class="role-card role-card-parent">
+                    <div class="role-card-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="role-card-title">Dành cho Phụ huynh</h3>
+                    <p class="role-card-description">
+                        Tìm kiếm gia sư phù hợp với nhu cầu học tập của con bạn.
+                        Đội ngũ gia sư được kiểm duyệt kỹ lưỡng, giàu kinh nghiệm.
+                    </p>
+                    <a href="/TaiKhoan/DangNhap?role=phuhuynh" class="role-card-link">Tìm gia sư →</a>
+                </div>
+
+                <!-- GIA SƯ -->
+                <div class="role-card role-card-tutor">
+                    <div class="role-card-icon">👨‍🏫</div>
+                    <h3 class="role-card-title">Dành cho Gia sư</h3>
+                    <p class="role-card-description">
+                        Tham gia đội ngũ gia sư chuyên nghiệp của chúng tôi.
+                        Nhận lớp phù hợp, thu nhập ổn định và hỗ trợ tận tình.
+                    </p>
+                    <a href="/TaiKhoan/DangKy?role=giasu" class="role-card-link">Đăng ký ngay →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- ========== FEATURES SECTION ========== -->
+<section id="features" class="features py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-primary">Vì sao chọn Amsterdam Bảo Tuân?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-4 feature-card shadow-sm h-100">
+                    <div class="icon bg-primary text-white mb-3 mx-auto">
+                        <i class="fa-solid fa-award fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold">Chất lượng hàng đầu</h5>
+                    <p>Gia sư được tuyển chọn kỹ lưỡng, đảm bảo chuyên môn và uy tín.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 feature-card shadow-sm h-100">
+                    <div class="icon bg-warning text-white mb-3 mx-auto">
+                        <i class="fa-solid fa-bolt fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold">Kết nối nhanh chóng</h5>
+                    <p>Tìm và ghép lớp chỉ trong vài phút, phù hợp với nhu cầu học tập thực tế.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 feature-card shadow-sm h-100">
+                    <div class="icon bg-primary text-white mb-3 mx-auto">
+                        <i class="fa-solid fa-chart-line fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold">Theo dõi hiệu quả</h5>
+                    <p>Hệ thống quản lý buổi học, đánh giá và phản hồi tiện lợi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ABOUT SECTION ========== -->
+<section id="about" class="about py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                <img src="~/images/about-tutor.jpg" alt="Giới thiệu trung tâm" class="img-fluid" />
+            </div>
+            <div class="col-lg-6 ps-lg-5 animate__animated animate__fadeInRight">
+                <h2 class="fw-bold mb-3 text-primary">Tại sao nên chọn chúng tôi?</h2>
+                <p class="mb-3">
+                    Trung tâm Gia sư <strong>Amsterdam Bảo Tuân</strong> luôn đặt chất lượng lên hàng đầu.
+                    Đội ngũ gia sư không chỉ giỏi chuyên môn mà còn tận tâm, trách nhiệm, và luôn đồng hành cùng học sinh.
+                </p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="fa-solid fa-check text-primary me-2"></i>Phương pháp dạy hiệu quả, tạo động lực học tập.</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-primary me-2"></i>Cam kết tiến bộ rõ rệt sau 10 buổi học.</li>
+                    <li><i class="fa-solid fa-check text-primary me-2"></i>2 buổi học thử miễn phí, không hài lòng hoàn tiền.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SERVICES SECTION ========== -->
+<section id="services" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-primary">Dịch vụ tại Amsterdam Bảo Tuân</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card p-4 shadow-sm h-100">
+                    <i class="fa-solid fa-book-open fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-bold">Các môn phổ thông</h5>
+                    <p>Toán, Lý, Hóa, Văn, Anh, Tiểu học... dành cho mọi cấp học.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4 shadow-sm h-100">
+                    <i class="fa-solid fa-language fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-bold">Ngoại ngữ</h5>
+                    <p>Tiếng Anh, Nhật, Hàn, Trung, Pháp, Tây Ban Nha cho học sinh & người đi làm.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4 shadow-sm h-100">
+                    <i class="fa-solid fa-guitar fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-bold">Năng khiếu</h5>
+                    <p>Piano, Guitar, Mỹ thuật, Thanh nhạc... với gia sư tận tâm và chuyên nghiệp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TESTIMONIALS SECTION ========== -->
+<section id="testimonials" class="testimonials py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-primary">Phụ huynh nói gì về chúng tôi</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm h-100">
+                    <p>“Gia sư tận tâm và chuyên nghiệp. Con tôi tiến bộ rõ rệt chỉ sau 1 tháng học.”</p>
+                    <h6 class="mt-3 mb-0 fw-bold text-primary">Chị Lan - Phụ huynh học sinh lớp 8</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm h-100">
+                    <p>“Phương pháp giảng dạy sáng tạo giúp con yêu thích học Toán hơn rất nhiều.”</p>
+                    <h6 class="mt-3 mb-0 fw-bold text-primary">Anh Dũng - Phụ huynh học sinh lớp 6</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 shadow-sm h-100">
+                    <p>“Rất hài lòng với dịch vụ! Gia sư đến đúng giờ và báo cáo buổi học rất chi tiết.”</p>
+                    <h6 class="mt-3 mb-0 fw-bold text-primary">Chị Hương - Phụ huynh lớp 10</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CTA SECTION ========== -->
+<section id="contact" class="cta py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Cần thuê gia sư ngay hôm nay?</h2>
+        <p class="mb-4">Trải nghiệm dịch vụ chất lượng & chuyên nghiệp cùng Amsterdam Bảo Tuân.</p>
+        <a href="/TaiKhoan/DangKy" class="btn btn-warning btn-lg">Đăng ký ngay</a>
+    </div>
+</section>
