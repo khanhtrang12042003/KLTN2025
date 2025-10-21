@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết Gia sư được đề xuất";
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <!-- Header -->
+    <section class="text-center mb-5">
+        <h2 class="fw-bold text-primary mb-2">Hồ sơ Gia sư được giới thiệu</h2>
+        <p class="text-muted">Trung tâm đã chọn gia sư phù hợp với yêu cầu của bạn. Vui lòng xem thông tin chi tiết và xác nhận.</p>
+    </section>
+
+    <!-- Thông tin gia sư -->
+    <div class="card border-0 shadow-sm rounded-4 mb-5 p-4">
+        <div class="row g-4 align-items-center">
+            <!-- Ảnh đại diện -->
+            <div class="col-md-4 text-center">
+                <img src="https://via.placeholder.com/300x300" alt="Gia sư" class="rounded-circle shadow-sm" style="width: 220px; height: 220px; object-fit: cover;">
+                <h4 class="mt-3 fw-bold text-primary">Nguyễn Văn A</h4>
+                <p class="text-muted mb-1">Sinh viên Đại học Sư phạm Hà Nội</p>
+                <p class="text-muted">3 năm kinh nghiệm giảng dạy Toán cấp 2</p>
+            </div>
+
+            <!-- Thông tin chi tiết -->
+            <div class="col-md-8">
+                <h5 class="fw-bold mb-3">Thông tin chuyên môn</h5>
+                <ul class="list-unstyled mb-4">
+                    <li><strong>Môn giảng dạy:</strong> Toán</li>
+                    <li><strong>Trình độ:</strong> Sinh viên năm 4 - Khoa Toán</li>
+                    <li><strong>Kinh nghiệm:</strong> 3 năm</li>
+                    <li><strong>Thành tích:</strong> Giải Nhì Olympic Toán cấp trường</li>
+                    <li><strong>Học phí dự kiến:</strong> 200.000đ/buổi</li>
+                    <li><strong>Lịch dạy khả dụng:</strong> Thứ 2, 4, 6 (18h - 20h)</li>
+                    <li><strong>Khu vực:</strong> TP. Vinh, Nghệ An</li>
+                </ul>
+
+                <h5 class="fw-bold mb-2">Giới thiệu bản thân</h5>
+                <p class="text-muted">
+                    Tôi là sinh viên năm cuối khoa Sư phạm Toán, đã có kinh nghiệm dạy hơn 10 học sinh thi vào lớp 10 và đạt kết quả tốt.
+                    Tôi chú trọng giúp học sinh hiểu sâu bản chất, rèn kỹ năng giải đề và tạo hứng thú học tập.
+                </p>
+
+                <!-- Nút hành động -->
+                <div class="mt-4 text-center">
+                    <button class="btn btn-success rounded-4 px-4 me-2" id="btnDuyet">
+                        ✅ Duyệt Gia sư
+                    </button>
+                    <button class="btn btn-outline-danger rounded-4 px-4" id="btnKhongDongY">
+                        ❌ Không đồng ý
+                    </button>
+                    <a href="/PhuHuynh/QuanLyLopHoc" class="btn btn-outline-secondary rounded-4 px-4 ms-2">
+                        ⬅ Quay lại danh sách lớp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("btnDuyet").addEventListener("click", function() {
+            alert("✅ Bạn đã duyệt gia sư này. Trạng thái lớp học sẽ chuyển sang 'Đang học'.");
+            // TODO: Gọi API cập nhật trạng thái lớp học sau này
+        });
+
+        document.getElementById("btnKhongDongY").addEventListener("click", function() {
+            alert("❌ Bạn đã không đồng ý với gia sư này. Trung tâm sẽ giới thiệu người khác.");
+            // TODO: Gọi API cập nhật trạng thái lớp sang 'Từ chối gia sư'
+        });
+    </script>
+}

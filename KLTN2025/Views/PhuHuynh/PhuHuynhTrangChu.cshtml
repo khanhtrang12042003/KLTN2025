@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Bảng điều khiển Phụ huynh";
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <!-- Tiêu đề trang -->
+    <section class="text-center mb-5">
+        <h1 class="fw-bold text-primary mb-2">Bảng điều khiển Phụ huynh</h1>
+        <p class="text-muted">Quản lý lớp học và theo dõi tiến độ học tập của con em</p>
+    </section>
+
+    <!-- Thống kê -->
+    <section class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 hover-card text-center p-4">
+                <div class="fs-1 mb-3">📚</div>
+                <h5 class="fw-bold text-primary">Lớp đang học</h5>
+                <h2 class="fw-bolder mb-0">3</h2>
+                <p class="text-muted small mb-0">Lớp hoạt động</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 hover-card text-center p-4">
+                <div class="fs-1 mb-3">⏳</div>
+                <h5 class="fw-bold text-warning">Lớp chờ duyệt</h5>
+                <h2 class="fw-bolder mb-0">2</h2>
+                <p class="text-muted small mb-0">Chờ xác nhận</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 hover-card text-center p-4">
+                <div class="fs-1 mb-3">✅</div>
+                <h5 class="fw-bold text-success">Lớp đã hoàn thành</h5>
+                <h2 class="fw-bolder mb-0">5</h2>
+                <p class="text-muted small mb-0">Đã kết thúc</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Các nút hành động -->
+    <section class="row g-4 mb-5">
+        <div class="col-md-6">
+            <button id="btnTimGiaSu" class="btn btn-primary w-100 py-4 rounded-4 shadow-sm">
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <span class="fs-2">🔍</span>
+                    <div class="text-start">
+                        <h5 class="fw-bold mb-1 text-white">Tìm gia sư</h5>
+                        <small class="text-light opacity-75">Tìm kiếm gia sư phù hợp</small>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button id="btnQuanLyLopHoc" class="btn btn-outline-primary w-100 py-4 rounded-4 shadow-sm">
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <span class="fs-2">📋</span>
+                    <div class="text-start">
+                        <h5 class="fw-bold mb-1">Quản lý lớp học</h5>
+                        <small class="text-muted">Xem và quản lý các lớp</small>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Thông báo -->
+    <section class="card border-0 shadow-sm rounded-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3 px-4">
+            <h5 class="mb-0">📢 Thông báo mới</h5>
+            <a href="#" id="btnXemTatCa" class="text-white text-decoration-underline">Xem tất cả</a>
+        </div>
+        <div class="card-body bg-light">
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action py-3">
+                    <strong>Gia sư mới đã được gán</strong><br />
+                    <small class="text-muted">Gia sư Trần Thị B đã được gán cho lớp Toán 9 - 2 giờ trước</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action py-3">
+                    <strong>Lớp đã được duyệt</strong><br />
+                    <small class="text-muted">Lớp Tiếng Anh 8 của bạn đã được duyệt thành công - 1 ngày trước</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action py-3">
+                    <strong>Báo cáo tiến độ mới</strong><br />
+                    <small class="text-muted">Gia sư đã gửi báo cáo tiến độ cho lớp Lý 10 - 3 ngày trước</small>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Nút "Tìm gia sư"
+            const btnTimGiaSu = document.getElementById("btnTimGiaSu");
+            if (btnTimGiaSu) {
+                btnTimGiaSu.addEventListener("click", () => {
+                    console.log("Chuyển đến trang tìm gia sư");
+                    window.location.href = "/PhuHuynh/TimGiaSu";
+                });
+            }
+
+            // Nút "Quản lý lớp học"
+            const btnQuanLyLopHoc = document.getElementById("btnQuanLyLopHoc");
+            if (btnQuanLyLopHoc) {
+                btnQuanLyLopHoc.addEventListener("click", () => {
+                    console.log("Chuyển đến trang quản lý lớp học");
+                    window.location.href = "/PhuHuynh/QuanLyLopHoc";
+                });
+            }
+
+            // Nút "Xem tất cả thông báo"
+            const btnXemTatCa = document.getElementById("btnXemTatCa");
+            if (btnXemTatCa) {
+                btnXemTatCa.addEventListener("click", e => {
+                    e.preventDefault();
+                    console.log("Xem tất cả thông báo");
+                    window.location.href = "/PhuHuynh/DanhSachThongBao";
+                });
+            }
+
+            // Click từng thông báo
+            document.querySelectorAll(".list-group-item").forEach(item => {
+                item.addEventListener("click", e => {
+                    e.preventDefault();
+                    console.log("Chi tiết thông báo");
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Đăng ký tìm gia sư";
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <h2 class="fw-bold text-primary text-center mb-4">Đăng ký tìm gia sư</h2>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 mx-auto" style="max-width: 850px;">
+        <form id="formDangKy" novalidate>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Môn học <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="monHoc" placeholder="VD: Toán, Tiếng Anh">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Học lực hiện tại <span class="text-danger">*</span></label>
+                    <select class="form-select" id="hocLuc">
+                        <option value="">-- Chọn học lực --</option>
+                        <option>Yếu</option>
+                        <option>Trung bình</option>
+                        <option>Khá</option>
+                        <option>Giỏi</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Điểm trung bình môn <span class="text-danger">*</span></label>
+                    <input type="number" step="0.1" min="0" max="10" class="form-control" id="diemTB" placeholder="VD: 7.5">
+                </div>
+
+                <div class="col-md-8">
+                    <label class="form-label fw-semibold">Trường đang học <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="truong" placeholder="VD: THPT Huỳnh Thúc Kháng">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Sách đang sử dụng <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="sach" placeholder="VD: Cánh Diều, Kết nối tri thức...">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Số buổi/tuần <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="soBuoi" min="1" placeholder="VD: 3">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Lịch học <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="lichHoc" placeholder="VD: Thứ 2, 4, 6 (18h - 20h)">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Học phí mong muốn (VNĐ/buổi) <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="hocPhi" min="0" placeholder="VD: 200000">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Địa chỉ cụ thể <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="diaChi" placeholder="VD: 25 Nguyễn Văn Cừ, TP. Vinh">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Yêu cầu cụ thể về gia sư <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="yeuCau" rows="3" placeholder="VD: Gia sư có kinh nghiệm, nhiệt tình, ưu tiên sinh viên sư phạm..."></textarea>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-primary px-5 py-2 rounded-4" id="btnGuiYeuCau">Gửi yêu cầu</button>
+                <button type="reset" class="btn btn-outline-secondary px-4 py-2 ms-2 rounded-4">Làm mới</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("btnGuiYeuCau").addEventListener("click", function() {
+            const required = [
+                "monHoc", "hocLuc", "diemTB", "truong", "sach",
+                "lichHoc", "soBuoi", "diaChi", "yeuCau", "hocPhi"
+            ];
+
+            let isValid = true;
+            for (let id of required) {
+                const el = document.getElementById(id);
+                if (!el.value.trim()) {
+                    el.classList.add("is-invalid");
+                    isValid = false;
+                } else {
+                    el.classList.remove("is-invalid");
+                }
+            }
+
+            const hocPhi = parseFloat(document.getElementById("hocPhi").value);
+            const diemTB = parseFloat(document.getElementById("diemTB").value);
+
+            if (isNaN(hocPhi) || hocPhi <= 0) {
+                alert("❌ Vui lòng nhập học phí hợp lệ (>0).");
+                return;
+            }
+
+            if (isNaN(diemTB) || diemTB < 0 || diemTB > 10) {
+                alert("❌ Điểm trung bình phải trong khoảng 0 - 10.");
+                return;
+            }
+
+            if (!isValid) {
+                alert("⚠️ Vui lòng nhập đầy đủ thông tin bắt buộc!");
+                return;
+            }
+
+            alert("✅ Gửi yêu cầu tìm gia sư thành công!\nTrạng thái: Đang tuyển.");
+        });
+    </script>
+}
