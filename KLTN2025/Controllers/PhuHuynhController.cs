@@ -25,5 +25,13 @@ namespace KLTN2025.Controllers
         {
             return View();
         }
+        public IActionResult ThongTinCaNhan()
+        {
+            return View();
+        }
+        public IActionResult DanhGiaGiaSu()
+        {
+            return View();
+        }
     }
 }

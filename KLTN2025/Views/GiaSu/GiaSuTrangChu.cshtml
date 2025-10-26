@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ Gia sư";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/giasu.css" />
+
+<section class="search-filter-section">
+    <div class="search-filter-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm lớp gia sư ..." />
+            <button>Tìm kiếm</button>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Môn học</label>
+                <select>
+                    <option>Tất cả môn học</option>
+                    <option>Toán</option>
+                    <option>Tiếng Anh</option>
+                    <option>Tiếng Việt</option>
+                    <option>Lý</option>
+                    <option>Hóa</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Cấp học</label>
+                <select>
+                    <option>Tất cả cấp học</option>
+                    <option>Tiểu học</option>
+                    <option>THCS</option>
+                    <option>THPT</option>
+                    <option>Đại học</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Yêu cầu</label>
+                <select>
+                    <option>Tất cả yêu cầu</option>
+                    <option>Kinh nghiệm</option>
+                    <option>Không yêu cầu</option>
+                    <option>Bằng cấp</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Khu vực</label>
+                <select>
+                    <option>Tất cả khu vực</option>
+                    <option>Quận 1</option>
+                    <option>Quận 2</option>
+                    <option>Quận 3</option>
+                    <option>Quận 4</option>
+                    <option>Quận 5</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="filter-button">Tiến hành lọc</button>
+    </div>
+</section>
+
+<!-- Danh sách lớp -->
+<section class="new-classes-section" id="classes">
+    <h2 class="section-title">Danh sách lớp mới</h2>
+    <p class="section-subtitle">Những lớp học mới nhất đang chờ bạn</p>
+
+    <div class="classes-grid">
+        <div class="class-card">
+            <div class="class-header">
+                <span class="class-subject">Toán</span>
+                <span class="class-level">THPT</span>
+            </div>
+            <div class="class-info">
+                <p><strong>Lớp 12</strong></p>
+                <p class="class-location">📍 Quận 1, TP.HCM</p>
+            </div>
+            <div class="class-salary">500.000đ/tháng</div>
+            <p class="class-note">Học sinh chuẩn bị thi đại học, cần giáo viên có kinh nghiệm.</p>
+            <button class="class-button">Xem chi tiết</button>
+        </div>
+
+        <div class="class-card">
+            <div class="class-header">
+                <span class="class-subject">Tiếng Anh</span>
+                <span class="class-level">THCS</span>
+            </div>
+            <div class="class-info">
+                <p><strong>Lớp 9</strong></p>
+                <p class="class-location">📍 Quận 2, TP.HCM</p>
+            </div>
+            <div class="class-salary">400.000đ/tháng</div>
+            <p class="class-note">Học sinh yếu tiếng Anh, cần cải thiện kỹ năng giao tiếp.</p>
+            <button class="class-button">Xem chi tiết</button>
+        </div>
+
+        <div class="class-card">
+            <div class="class-header">
+                <span class="class-subject">Hóa</span>
+                <span class="class-level">THCS</span>
+            </div>
+            <div class="class-info">
+                <p><strong>Lớp 8</strong></p>
+                <p class="class-location">📍 Quận 5, TP.HCM</p>
+            </div>
+            <div class="class-salary">350.000đ/tháng</div>
+            <p class="class-note">Học sinh mới bắt đầu học Hóa, cần hướng dẫn cơ bản.</p>
+            <button class="class-button">Xem chi tiết</button>
+        </div>
+    </div>
+
+    <div class="view-all-link">
+        <a href="#">Xem tất cả lớp mới →</a>
+    </div>
+</section>
+
+<!-- Quy trình -->
+<section class="process-section">
+    <div class="process-container">
+        <h2 class="section-title">Quy trình nhận lớp</h2>
+        <p class="section-subtitle">4 bước đơn giản để bắt đầu dạy học</p>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-icon">1️⃣</div>
+                <h3 class="step-title">Tạo hồ sơ</h3>
+                <p class="step-description">Hoàn thành hồ sơ cá nhân của bạn với thông tin chi tiết.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">2️⃣</div>
+                <h3 class="step-title">Ứng tuyển</h3>
+                <p class="step-description">Chọn lớp phù hợp và gửi đơn ứng tuyển.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">3️⃣</div>
+                <h3 class="step-title">Duyệt lớp</h3>
+                <p class="step-description">Chúng tôi sẽ xem xét hồ sơ và liên hệ bạn trong 24 giờ.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">4️⃣</div>
+                <h3 class="step-title">Giảng dạy & Nhận phản hồi</h3>
+                <p class="step-description">Bắt đầu dạy và nhận phản hồi từ học sinh, phụ huynh.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <h2 class="section-title">Câu hỏi thường gặp</h2>
+    <p class="section-subtitle">Những thắc mắc phổ biến của gia sư</p>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Làm sao để nhận lớp nhanh?</span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Hoàn thành hồ sơ chi tiết, cập nhật ảnh chuyên nghiệp và ứng tuyển sớm.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Trung tâm có thu phí không?</span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Trung tâm thu phí 10% trên tổng học phí tháng đầu tiên sau khi lớp được xác nhận.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Có thể dạy nhiều lớp không?</span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Hoàn toàn có thể! Bạn có thể dạy nhiều lớp cùng một lúc nếu lịch trình cho phép. Chúng tôi khuyến khích gia sư phát triển sự nghiệp bằng cách mở rộng số lượng lớp dạy.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Làm sao để liên hệ hỗ trợ?</span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Bạn có thể liên hệ với chúng tôi qua email, điện thoại, hoặc chat trực tiếp trên nền tảng. Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ 24/7.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Có cần kinh nghiệm không?</span>
+                <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Không nhất thiết phải có kinh nghiệm dạy học chuyên nghiệp. Chúng tôi chào đón cả những gia sư mới bắt đầu. Tuy nhiên, bạn cần có kiến thức vững chắc về môn học mà bạn muốn dạy.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/giasu.js"></script>
+}

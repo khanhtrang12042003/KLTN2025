@@ -1,0 +1,348 @@
+﻿/* ========== RESET & BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: #111;
+}
+
+p {
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========== COLORS ========== */
+.text-primary {
+    color: #004AAD !important;
+}
+
+.bg-primary {
+    background-color: #004AAD !important;
+}
+
+.btn-primary {
+    background-color: #004AAD;
+    border-color: #004AAD;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background-color: #003580;
+        border-color: #003580;
+        transform: translateY(-2px);
+    }
+
+.btn-outline-primary {
+    color: #004AAD;
+    border: 2px solid #004AAD;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #004AAD;
+        color: #fff;
+    }
+
+/* ========== SEARCH FILTER SECTION ========== */
+.search-filter-section {
+    background: #f8fbff;
+    padding: 60px 20px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.search-filter-container {
+    max-width: 1100px;
+    margin: auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .search-bar input {
+        width: 60%;
+        padding: 12px 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 1rem;
+    }
+
+    .search-bar button {
+        background: #004AAD;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+        .search-bar button:hover {
+            background: #003580;
+        }
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    flex: 1 1 22%;
+    min-width: 220px;
+}
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+
+    .filter-group select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+.filter-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto 0;
+    background: #004AAD;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+    .filter-button:hover {
+        background: #003580;
+    }
+
+/* ========== CLASSES GRID ========== */
+.new-classes-section {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #004AAD;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.class-card {
+    background: #f9f9ff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+    .class-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+.class-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.class-subject {
+    background: #004AAD;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.class-level {
+    font-weight: 600;
+    color: #333;
+}
+
+.class-info p {
+    margin-bottom: 6px;
+}
+
+.class-location {
+    color: #555;
+}
+
+.class-salary {
+    color: #004AAD;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.class-note {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.class-button {
+    background: #FFC107;
+    border: none;
+    color: #333;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .class-button:hover {
+        background: #ffb300;
+    }
+
+/* ========== PROCESS SECTION ========== */
+.process-section {
+    background: #f8faff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.process-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.process-step {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.step-icon {
+    font-size: 2rem;
+    color: #004AAD;
+    margin-bottom: 10px;
+}
+
+.step-title {
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.step-description {
+    color: #555;
+}
+
+/* ========== FAQ SECTION ========== */
+.faq-section {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: #f8faff;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #004AAD;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 20px 15px 20px;
+    color: #555;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 100%;
+    }
+
+    .filter-section {
+        flex-direction: column;
+    }
+
+    .filter-button {
+        width: 100%;
+    }
+}

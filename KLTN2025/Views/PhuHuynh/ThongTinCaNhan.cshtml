@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <!-- Header -->
+    <section class="text-center mb-5">
+        <h2 class="fw-bold text-primary mb-2">Thông tin cá nhân</h2>
+        <p class="text-muted">Cập nhật thông tin phụ huynh và học sinh để trung tâm hỗ trợ tốt hơn</p>
+    </section>
+
+    <!-- Thông tin phụ huynh -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <h5 class="fw-semibold mb-3 text-primary">Thông tin phụ huynh</h5>
+            <form id="formParent">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Họ và tên</label>
+                        <input type="text" class="form-control rounded-3" placeholder="Nguyễn Văn A" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Số điện thoại</label>
+                        <input type="tel" class="form-control rounded-3" placeholder="0987xxxxxx" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control rounded-3" placeholder="phuhuynh@email.com" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Địa chỉ</label>
+                        <input type="text" class="form-control rounded-3" placeholder="Số nhà, đường, phường/xã, quận/huyện..." required />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thông tin học sinh -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <h5 class="fw-semibold mb-3 text-primary">Thông tin học sinh</h5>
+            <form id="formStudent">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Họ và tên học sinh</label>
+                        <input type="text" class="form-control rounded-3" placeholder="Nguyễn Bảo Minh" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold">Khối lớp</label>
+                        <select class="form-select rounded-3" required>
+                            <option value="">Chọn lớp</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold">Trường học</label>
+                        <input type="text" class="form-control rounded-3" placeholder="THCS/THPT ..." required />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label fw-semibold">Mô tả thêm</label>
+                        <textarea class="form-control rounded-3" rows="3" placeholder="Ví dụ: Học sinh hơi nhút nhát, cần gia sư kiên nhẫn, dạy chắc cơ bản..."></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cập nhật ảnh đại diện -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body text-center">
+            <h5 class="fw-semibold text-primary mb-3">Ảnh đại diện</h5>
+            <img src="~/img/avatar-default.png" id="previewAvatar" alt="Avatar" class="rounded-circle shadow mb-3" style="width:120px; height:120px; object-fit:cover;">
+            <div>
+                <input type="file" id="uploadAvatar" accept="image/*" class="form-control w-auto d-inline-block rounded-3" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút lưu -->
+    <div class="text-center">
+        <button id="btnSave" class="btn btn-primary px-5 py-2 rounded-4 fw-semibold">Lưu thông tin</button>
+    </div>
+
+    <!-- Thông báo -->
+    <div id="alertBox" class="alert alert-success mt-4 text-center d-none rounded-4">
+        ✅ Thông tin đã được cập nhật thành công!
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const avatarInput = document.getElementById("uploadAvatar");
+            const previewAvatar = document.getElementById("previewAvatar");
+            const btnSave = document.getElementById("btnSave");
+            const alertBox = document.getElementById("alertBox");
+
+            // 🖼️ Xem trước ảnh đại diện
+            avatarInput.addEventListener("change", (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => previewAvatar.src = ev.target.result;
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // 💾 Lưu thông tin
+            btnSave.addEventListener("click", (e) => {
+                e.preventDefault();
+                alertBox.classList.remove("d-none");
+                window.scrollTo({ top: alertBox.offsetTop - 100, behavior: 'smooth' });
+            });
+        });
+    </script>
+}
