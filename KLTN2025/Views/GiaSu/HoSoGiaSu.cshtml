@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Hồ sơ Gia sư";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <h2 class="text-primary fw-bold text-center mb-4">🧑‍🏫 Hồ sơ Gia sư</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-md-4 text-center">
+                                <img src="~/img/avatar-default.png" alt="Ảnh đại diện" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;" />
+                                <div class="mb-3">
+                                    <input class="form-control form-control-sm" type="file" id="AnhDaiDien" name="AnhDaiDien" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Họ và tên</label>
+                                        <input type="text" class="form-control" name="HoTen" value="Nguyễn Văn A" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Ngày sinh</label>
+                                        <input type="date" class="form-control" name="NgaySinh" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Giới tính</label>
+                                        <select class="form-select" name="GioiTinh">
+                                            <option value="true">Nam</option>
+                                            <option value="false">Nữ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="SDT" placeholder="Nhập số điện thoại" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Trường / Đại học</label>
+                                        <input type="text" class="form-control" name="DaiHoc" placeholder="VD: ĐH Sư phạm Hà Nội" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Ngành học</label>
+                                        <input type="text" class="form-control" name="NganhHoc" placeholder="VD: Toán học" />
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-semibold">Kinh nghiệm giảng dạy</label>
+                                        <textarea class="form-control" name="KinhNghiem" rows="2" placeholder="Mô tả kinh nghiệm giảng dạy..."></textarea>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-semibold">Kỹ năng nổi bật</label>
+                                        <textarea class="form-control" name="KyNang" rows="2" placeholder="VD: Giao tiếp tốt, kiên nhẫn, nắm vững kiến thức Toán..."></textarea>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Khu vực dạy</label>
+                                        <input type="text" class="form-control" name="KhuVucDay" placeholder="VD: Cầu Giấy, Thanh Xuân..." />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Lịch rảnh</label>
+                                        <input type="text" class="form-control" name="LichRanh" placeholder="VD: T2 - T6 (18h-20h)" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Ảnh sinh viên / bằng tốt nghiệp</label>
+                                        <input class="form-control form-control-sm" type="file" name="AnhBangTotNghiep" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Chứng chỉ hoặc file đính kèm</label>
+                                        <input class="form-control form-control-sm" type="file" name="FileKemTheo" />
+                                    </div>
+                                </div>
+
+                                <div class="text-end mt-4">
+                                    <button type="submit" class="btn btn-success px-4">💾 Lưu thay đổi</button>
+                                    <a href="/GiaSu/GiaSuTrangChu" class="btn btn-outline-secondary px-4">⬅ Quay lại</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

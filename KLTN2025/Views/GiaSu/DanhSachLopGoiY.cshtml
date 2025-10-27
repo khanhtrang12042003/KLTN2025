@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Danh sách lớp gợi ý";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold text-center mb-4">🎯 Danh sách lớp học được gợi ý cho bạn</h2>
+
+    <!-- Thông tin tóm tắt gia sư -->
+    <div class="alert alert-info shadow-sm">
+        <strong>Hồ sơ tóm tắt:</strong>
+        <ul class="mb-0">
+            <li><strong>Môn dạy:</strong> Toán, Lý</li>
+            <li><strong>Khu vực:</strong> Cầu Giấy, Hà Nội</li>
+            <li><strong>Lịch rảnh:</strong> T2 - T4 - T6 (18h - 20h)</li>
+            <li><strong>Kinh nghiệm:</strong> 2 năm dạy học sinh cấp 2</li>
+        </ul>
+    </div>
+
+    <!-- Danh sách lớp gợi ý -->
+    @{
+        var coLopPhuHop = true; // sau này thay bằng kiểm tra dữ liệu DB
+    }
+
+    @if (coLopPhuHop)
+    {
+        <div class="row g-4">
+            @for (int i = 1; i <= 4; i++)
+            {
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary fw-bold">Lớp @i - Toán 9</h5>
+                            <p class="mb-1"><strong>Khu vực:</strong> Cầu Giấy, Hà Nội</p>
+                            <p class="mb-1"><strong>Lịch học:</strong> T2 - T4 - T6 (17h - 19h)</p>
+                            <p class="mb-1"><strong>Học phí:</strong> 300.000đ/buổi</p>
+                            <p class="mb-1"><strong>Phụ huynh:</strong> Nguyễn Thị Lan</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="#" class="btn btn-outline-primary btn-sm w-50 me-2">Xem chi tiết</a>
+                                <a href="#" class="btn btn-success btn-sm w-50">Ứng tuyển</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center mt-4 shadow-sm">
+            <strong>Hiện tại chưa có lớp mới phù hợp với hồ sơ của bạn.</strong><br />
+            <span class="text-muted">Bạn có thể cập nhật hồ sơ để nhận gợi ý chính xác hơn.</span>
+        </div>
+    }
+</div>

@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Danh sách lớp mới";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary fw-bold text-center">📚 Danh sách lớp học mới</h2>
+
+    <!-- Bộ lọc -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Môn học</label>
+                    <select class="form-select">
+                        <option>Tất cả</option>
+                        <option>Toán</option>
+                        <option>Văn</option>
+                        <option>Anh</option>
+                        <option>Lý</option>
+                        <option>Hóa</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Khối lớp</label>
+                    <select class="form-select">
+                        <option>Tất cả</option>
+                        <option>Lớp 1-5</option>
+                        <option>Lớp 6-9</option>
+                        <option>Lớp 10-12</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Khu vực</label>
+                    <select class="form-select">
+                        <option>Tất cả</option>
+                        <option>TP. Hà Nội</option>
+                        <option>TP. Hồ Chí Minh</option>
+                        <option>Đà Nẵng</option>
+                        <option>Nghệ An</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">🔍 Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Danh sách lớp -->
+    <div class="row g-4">
+        @* Dữ liệu mẫu – sau này sẽ lấy từ DB *@
+        @for (int i = 1; i <= 6; i++)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">Lớp @i - Toán 8</h5>
+                        <p class="mb-1"><strong>Khu vực:</strong> Cầu Giấy, Hà Nội</p>
+                        <p class="mb-1"><strong>Số buổi/tuần:</strong> 3</p>
+                        <p class="mb-1"><strong>Lịch học:</strong> T2 - T4 - T6 (17h - 19h)</p>
+                        <p class="mb-1"><strong>Học phí:</strong> 250.000đ/buổi</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="#" class="btn btn-outline-primary btn-sm w-50 me-1">Xem chi tiết</a>
+                            <a href="#" class="btn btn-success btn-sm w-50">Ứng tuyển</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Thanh toán phí nhận lớp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="fw-bold text-primary text-center mb-4">
+        💰 Thanh toán phí nhận lớp
+    </h2>
+
+    <div class="alert alert-info shadow-sm">
+        <strong>Hướng dẫn:</strong>
+        <p class="mb-0">
+            - Mỗi lớp học khi được nhận cần thanh toán phí quản lý trước khi dạy chính thức. <br />
+            - Bạn có thể xem danh sách lớp cần thanh toán và thực hiện thanh toán trực tuyến.
+        </p>
+    </div>
+
+    <div class="card shadow-sm border-0 mt-3">
+        <div class="card-body">
+            <table class="table table-bordered align-middle text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Lớp học</th>
+                        <th>Môn học</th>
+                        <th>Phụ huynh</th>
+                        <th>Học phí (VNĐ)</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lớp Toán 8 - Cầu Giấy</td>
+                        <td>Toán</td>
+                        <td>Nguyễn Thị Lan</td>
+                        <td>300,000</td>
+                        <td><span class="badge bg-warning text-dark">Đang chờ thanh toán</span></td>
+                        <td>
+                            <a href="/GiaSu/ChiTietThanhToan" class="btn btn-outline-primary btn-sm">
+                                Thanh toán
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Lớp Văn 9 - Ba Đình</td>
+                        <td>Ngữ văn</td>
+                        <td>Trần Anh</td>
+                        <td>280,000</td>
+                        <td><span class="badge bg-success">Đã thanh toán</span></td>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-sm" disabled>Hoàn tất</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lớp Anh 6 - Tây Hồ</td>
+                        <td>Tiếng Anh</td>
+                        <td>Lê Minh Hà</td>
+                        <td>250,000</td>
+                        <td><span class="badge bg-danger">Từ chối</span></td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" disabled>Đã từ chối</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

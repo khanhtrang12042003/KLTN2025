@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Phản hồi & Hỗ trợ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <h3 class="fw-bold text-primary mb-3">💬 Gửi phản hồi hoặc yêu cầu hỗ trợ</h3>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form>
+                <div class="mb-3">
+                    <label for="loaiPhanHoi" class="form-label fw-bold">Loại phản hồi</label>
+                    <select id="loaiPhanHoi" class="form-select">
+                        <option value="">-- Chọn loại phản hồi --</option>
+                        <option value="chung">Phản hồi chung</option>
+                        <option value="lop">Vấn đề về lớp học</option>
+                        <option value="thanhtoan">Hỗ trợ thanh toán</option>
+                        <option value="khac">Khác</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="noiDung" class="form-label fw-bold">Nội dung phản hồi</label>
+                    <textarea id="noiDung" class="form-control" rows="5" placeholder="Nhập nội dung phản hồi của bạn..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fileDinhKem" class="form-label fw-bold">Tệp đính kèm (nếu có)</label>
+                    <input type="file" class="form-control" id="fileDinhKem" />
+                </div>
+
+                <div class="text-end">
+                    <button type="button" id="btnGui" class="btn btn-primary px-4">Gửi phản hồi</button>
+                    <a href="/GiaSu/ThongBao" class="btn btn-outline-secondary ms-2">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("btnGui").addEventListener("click", function () {
+            const noiDung = document.getElementById("noiDung").value.trim();
+            if (noiDung === "") {
+                alert("⚠️ Vui lòng nhập nội dung phản hồi!");
+                return;
+            }
+
+            alert("✅ Phản hồi của bạn đã được gửi thành công!\nTrung tâm sẽ phản hồi sớm nhất có thể.");
+            window.location.href = "/GiaSu/ThongBao";
+        });
+    </script>
+}

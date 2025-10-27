@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Thông báo từ Trung tâm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 mb-5">
+    <h3 class="fw-bold text-primary mb-3">📢 Thông báo từ Trung tâm Gia sư Amsterdam Bảo Tuân</h3>
+
+    @* Ví dụ dữ liệu giả để demo *@
+    @{
+        var danhSachThongBao = new List<dynamic>
+    {
+    new { TieuDe = "Xác nhận hồ sơ gia sư thành công 🎓", NoiDung = "Trung tâm đã duyệt hồ sơ của bạn. Bạn có thể bắt đầu ứng tuyển các lớp phù hợp.", NgayGui = DateTime.Now.AddDays(-1), LienKet = "/GiaSu/HoSoGiaSu" },
+    new { TieuDe = "Lớp học mới tại khu vực Chương Mỹ", NoiDung = "Có 3 lớp mới được mở tại khu vực bạn đã chọn, hãy xem ngay!", NgayGui = DateTime.Now.AddDays(-2), LienKet = "/GiaSu/DanhSachLopMoi" },
+    new { TieuDe = "Cập nhật chính sách nhận lớp", NoiDung = "Phí nhận lớp áp dụng 40% học phí tháng đầu, vui lòng đọc lại điều khoản mới.", NgayGui = DateTime.Now.AddDays(-3), LienKet = "/GiaSu/UngTuyenLopHoc" }
+    };
+    }
+
+    @foreach (var tb in danhSachThongBao)
+    {
+        @Html.Partial("_ThongBaoCardPartial", (object)tb)
+    }
+
+
+    <div class="text-end mt-3">
+        <a href="/GiaSu/PhanHoiHoTro" class="btn btn-outline-secondary">Gửi phản hồi</a>
+    </div>
+</div>

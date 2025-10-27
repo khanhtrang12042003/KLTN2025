@@ -1,0 +1,16 @@
+﻿@* Partial dùng để hiển thị 1 thẻ thông báo *@
+@model dynamic
+
+<div class="card shadow-sm border-0 mb-3">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold text-primary mb-0">@Model?.TieuDe ?? "Tiêu đề thông báo"</h5>
+            <small class="text-muted">@Model?.NgayGui?.ToString("dd/MM/yyyy") ?? "Chưa có ngày"</small>
+        </div>
+        <p class="mt-2">@Model?.NoiDung ?? "Nội dung thông báo sẽ hiển thị tại đây."</p>
+        @if (!string.IsNullOrEmpty(Model?.LienKet))
+        {
+            <a href="@Model.LienKet" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+        }
+    </div>
+</div>

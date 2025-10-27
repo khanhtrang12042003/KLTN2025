@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow-sm p-4 mx-auto" style="max-width: 700px;">
+        <h3 class="text-center text-primary fw-bold mb-4">
+            💳 Chi tiết thanh toán phí nhận lớp
+        </h3>
+
+        <div class="mb-3">
+            <p><strong>Lớp học:</strong> Toán 8 - Cầu Giấy</p>
+            <p><strong>Phụ huynh:</strong> Nguyễn Thị Lan</p>
+            <p>
+                <strong>Số tiền cần thanh toán:</strong>
+                <span class="text-danger fw-bold">300,000 VNĐ</span>
+            </p>
+            <p><strong>Phương thức thanh toán:</strong> QR MoMo</p>
+        </div>
+
+        <div class="text-center my-4">
+            <img src="/img/qr_momo_demo.png" alt="QR Code thanh toán" width="200" class="border rounded p-2 shadow-sm" />
+            <p class="mt-2 text-muted fst-italic">Vui lòng quét mã để hoàn tất thanh toán</p>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="/GiaSu/ThanhToan" class="btn btn-secondary px-4">← Quay lại</a>
+            <button class="btn btn-success px-4">✅ Xác nhận đã thanh toán</button>
+            <button class="btn btn-danger px-4">❌ Gặp sự cố</button>
+        </div>
+    </div>
+</div>
