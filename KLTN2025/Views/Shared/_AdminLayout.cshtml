@@ -1,0 +1,36 @@
+﻿@{
+    var userName = ViewBag.UserName ?? "Quản trị viên";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Trung tâm Gia sư Amsterdam Bảo Tuân</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-white border-end p-3" style="width:250px; min-height:100vh;">
+            <h5 class="text-center text-primary mb-4">⚙️ ADMIN</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a class="nav-link" href="/Admin/Index">🏠 Dashboard</a></li>
+                <li class="nav-item mb-2"><a class="nav-link" href="/Admin/QuanLyNguoiDung">👥 Quản lý người dùng</a></li>
+                <li class="nav-item mb-2"><a class="nav-link" href="/Admin/ThemNhanVien">➕ Thêm nhân viên</a></li>
+                <li class="nav-item mb-2"><a class="nav-link" href="/Admin/ThongKeBaoCao">📊 Thống kê báo cáo</a></li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-fill p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4>@ViewData["Title"]</h4>
+                <div>👋 Xin chào, <b>@userName</b></div>
+            </div>
+            <div class="card p-4 shadow-sm">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

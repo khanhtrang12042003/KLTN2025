@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Trang quản lý người dùng";
+    ViewBag.AdminName = "Admin Bảo Tuân"; // Tên hiển thị góc phải
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container mt-4">
+    <h3 class="fw-bold text-success mb-3">➕ Thêm nhân viên mới</h3>
+
+    <form class="card p-4 shadow-sm">
+        <div class="mb-3">
+            <label class="form-label">Họ tên</label>
+            <input type="text" class="form-control" placeholder="Nhập họ tên nhân viên" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Nhập email công việc" />
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Xác nhận mật khẩu</label>
+                <input type="password" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Vai trò</label>
+                <select class="form-select">
+                    <option value="NhanSu">Nhân sự</option>
+                    <option value="TuVanPH">Tư vấn phụ huynh</option>
+                    <option value="CSKH">Chăm sóc khách hàng</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Trạng thái</label>
+                <select class="form-select">
+                    <option>Hoạt động</option>
+                    <option>Khóa</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <a href="/Admin/QuanLyNguoiDung" class="btn btn-secondary">Quay lại</a>
+            <button type="submit" class="btn btn-success">Lưu thông tin</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Phân công lớp học";
+    ViewBag.UserName = "Nguyễn Thị Hạnh";
+    Layout = "~/Views/Shared/_NhanSuLayout.cshtml";
+}
+
+<div class="container">
+    <h3 class="fw-bold text-primary mb-4">📚 Phân công lớp học</h3>
+
+    <table class="table table-bordered align-middle shadow-sm bg-white">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Tên lớp</th>
+                <th>Môn học</th>
+                <th>Phụ huynh</th>
+                <th>Trạng thái</th>
+                <th>Gia sư được chọn</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Lớp Toán 7 - Quận 3</td>
+                <td>Toán</td>
+                <td>Nguyễn Văn P</td>
+                <td><span class="badge bg-warning text-dark">Chờ phân công</span></td>
+                <td>Chưa có</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Phân công</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lớp Anh 6 - Cầu Giấy</td>
+                <td>Tiếng Anh</td>
+                <td>Trần Thị Q</td>
+                <td><span class="badge bg-success">Đang học</span></td>
+                <td>Phạm Minh H</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-outline-secondary">Xem</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Trang nhân sự - Dashboard";
+    ViewBag.UserName = "Nguyễn Thị Hạnh";
+    Layout = "~/Views/Shared/_NhanSuLayout.cshtml";
+}
+
+<div class="container">
+    <h3 class="fw-bold text-primary mb-3">📊 Tổng quan công việc</h3>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm p-3 border-primary">
+                <h6>Hồ sơ chờ duyệt</h6>
+                <h3 class="fw-bold text-primary">12</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm p-3 border-success">
+                <h6>Lớp đang chờ phân công</h6>
+                <h3 class="fw-bold text-success">8</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm p-3 border-warning">
+                <h6>Gia sư mới trong tháng</h6>
+                <h3 class="fw-bold text-warning">25</h3>
+            </div>
+        </div>
+    </div>
+</div>

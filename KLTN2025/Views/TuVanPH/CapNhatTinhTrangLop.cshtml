@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Cập nhật tình trạng lớp học";
+    Layout = "~/Views/Shared/_TuVanPHLayout.cshtml";
+}
+
+<h3 class="mb-4">🛠️ Cập nhật tình trạng lớp học</h3>
+
+<form method="post" action="#">
+    <div class="mb-3">
+        <label>Mã lớp học</label>
+        <input type="text" class="form-control" value="L001" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Tình trạng</label>
+        <select class="form-select">
+            <option selected>Đang tuyển</option>
+            <option>Đã có gia sư</option>
+            <option>Hoàn thành</option>
+            <option>Hủy lớp</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Ghi chú cập nhật</label>
+        <textarea class="form-control" rows="3"></textarea>
+    </div>
+
+    <button class="btn btn-primary">💾 Cập nhật</button>
+    <a href="/TuVanPH/QuanLyLopHoc" class="btn btn-secondary">⬅ Quay lại</a>
+</form>

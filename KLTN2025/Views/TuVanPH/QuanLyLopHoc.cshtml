@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Quản lý lớp học";
+    Layout = "~/Views/Shared/_TuVanPHLayout.cshtml";
+}
+
+<h3 class="mb-4">📋 Danh sách lớp học</h3>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th>Mã lớp</th>
+            <th>Môn học</th>
+            <th>Khối</th>
+            <th>Phụ huynh</th>
+            <th>Học phí</th>
+            <th>Tình trạng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>L001</td>
+            <td>Toán</td>
+            <td>Lớp 9</td>
+            <td>Nguyễn Văn A</td>
+            <td>2.000.000₫/tháng</td>
+            <td><span class="badge bg-success">Đã có gia sư</span></td>
+            <td>
+                <a href="/TuVanPH/CapNhatTinhTrangLop" class="btn btn-sm btn-outline-primary">Cập nhật</a>
+            </td>
+        </tr>
+        <tr>
+            <td>L002</td>
+            <td>Tiếng Anh</td>
+            <td>Lớp 6</td>
+            <td>Trần Thị B</td>
+            <td>1.800.000₫/tháng</td>
+            <td><span class="badge bg-warning text-dark">Đang tuyển</span></td>
+            <td>
+                <a href="/TuVanPH/CapNhatTinhTrangLop" class="btn btn-sm btn-outline-primary">Cập nhật</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="/TuVanPH/ThemLopHoc" class="btn btn-primary mt-3">➕ Thêm lớp học mới</a>

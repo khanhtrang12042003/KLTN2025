@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Duyệt hồ sơ gia sư";
+    ViewBag.UserName = "Nguyễn Thị Hạnh";
+    Layout = "~/Views/Shared/_NhanSuLayout.cshtml";
+}
+
+<div class="container">
+    <h3 class="fw-bold text-primary mb-4">📋 Duyệt hồ sơ gia sư</h3>
+
+    <table class="table table-bordered table-hover align-middle shadow-sm bg-white">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Họ tên</th>
+                <th>Bằng cấp</th>
+                <th>Kinh nghiệm</th>
+                <th>Khu vực dạy</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Trần Văn A</td>
+                <td>ĐH Sư phạm Hà Nội</td>
+                <td>2 năm</td>
+                <td>Ba Đình, Cầu Giấy</td>
+                <td>25/10/2025</td>
+                <td><span class="badge bg-warning text-dark">Đang chờ</span></td>
+                <td>
+                    <a href="/NhanSu/ChiTietHoSo/1" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                    <a href="#" class="btn btn-sm btn-outline-success">Duyệt</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger">Từ chối</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Nguyễn Thị B</td>
+                <td>ĐH Ngoại ngữ</td>
+                <td>1 năm</td>
+                <td>Hai Bà Trưng</td>
+                <td>26/10/2025</td>
+                <td><span class="badge bg-warning text-dark">Đang chờ</span></td>
+                <td>
+                    <a href="/NhanSu/ChiTietHoSo/2" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                    <a href="#" class="btn btn-sm btn-outline-success">Duyệt</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger">Từ chối</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

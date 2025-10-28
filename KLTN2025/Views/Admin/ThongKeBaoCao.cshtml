@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Trang quản lý người dùng";
+    ViewBag.AdminName = "Admin Bảo Tuân"; // Tên hiển thị góc phải
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container mt-4">
+    <h3 class="fw-bold text-primary mb-4">📈 Thống kê & Báo cáo</h3>
+
+    <div class="card mb-3 shadow-sm">
+        <div class="card-header bg-light fw-bold">
+            Biểu đồ tài khoản theo vai trò
+        </div>
+        <div class="card-body">
+            <div style="height: 250px;" class="bg-light d-flex justify-content-center align-items-center text-secondary">
+                <em>Biểu đồ cột (Admin, Nhân sự, TVPH, CSKH, Gia sư, Phụ huynh)</em>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light fw-bold">
+            Biểu đồ số lớp theo trạng thái
+        </div>
+        <div class="card-body">
+            <div style="height: 250px;" class="bg-light d-flex justify-content-center align-items-center text-secondary">
+                <em>Biểu đồ tròn (Mới, Học thử, Đang học, Nợ phí, Kết thúc)</em>
+            </div>
+        </div>
+    </div>
+</div>

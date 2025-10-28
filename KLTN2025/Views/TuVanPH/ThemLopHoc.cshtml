@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Thêm lớp học mới";
+    Layout = "~/Views/Shared/_TuVanPHLayout.cshtml";
+}
+
+<h3 class="mb-4">➕ Thêm lớp học mới</h3>
+
+<form method="post" action="#">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>Môn học</label>
+            <input type="text" class="form-control" placeholder="VD: Toán, Lý, Anh..." />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Khối lớp</label>
+            <input type="text" class="form-control" placeholder="VD: Lớp 9" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Học phí (VNĐ/tháng)</label>
+            <input type="number" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Địa chỉ học</label>
+            <input type="text" class="form-control" placeholder="VD: 25 Nguyễn Trãi, Hà Nội" />
+        </div>
+        <div class="col-md-12 mb-3">
+            <label>Lịch học</label>
+            <input type="text" class="form-control" placeholder="VD: T2, T5, T7 - 18h đến 20h" />
+        </div>
+        <div class="col-md-12 mb-3">
+            <label>Ghi chú thêm</label>
+            <textarea class="form-control" rows="3" placeholder="Ghi chú cho lớp học (nếu có)"></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">💾 Lưu lớp học</button>
+    <a href="/TuVanPH/QuanLyLopHoc" class="btn btn-secondary">⬅ Quay lại</a>
+</form>

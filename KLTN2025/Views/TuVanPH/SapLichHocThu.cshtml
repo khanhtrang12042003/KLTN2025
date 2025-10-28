@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Sắp xếp lịch học thử";
+    Layout = "~/Views/Shared/_TuVanPHLayout.cshtml";
+}
+
+<h3 class="mb-4">🗓️ Sắp xếp lịch học thử</h3>
+
+<form method="post" action="#">
+    <div class="mb-3">
+        <label>Chọn lớp học</label>
+        <select class="form-select">
+            <option>L001 - Toán 9 - Nguyễn Văn A</option>
+            <option>L002 - Tiếng Anh 6 - Trần Thị B</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Chọn gia sư</label>
+        <select class="form-select">
+            <option>GS01 - Phạm Quốc Dũng</option>
+            <option>GS02 - Lê Thu Trang</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Thời gian học thử</label>
+        <input type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Ghi chú</label>
+        <textarea class="form-control" rows="3" placeholder="Ghi chú thêm nếu có..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">✅ Lưu lịch học thử</button>
+</form>

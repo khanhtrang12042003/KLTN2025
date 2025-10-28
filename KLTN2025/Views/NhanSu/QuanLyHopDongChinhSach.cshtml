@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Quản lý hợp đồng & chính sách";
+    ViewBag.UserName = "Nguyễn Thị Hạnh";
+    Layout = "~/Views/Shared/_NhanSuLayout.cshtml";
+}
+
+<div class="container">
+    <h3 class="fw-bold text-primary mb-4">📑 Quản lý hợp đồng & chính sách</h3>
+
+    <div class="card shadow-sm p-4 mb-4">
+        <h5 class="fw-bold text-success">Danh sách hợp đồng gia sư</h5>
+        <table class="table table-bordered align-middle mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Họ tên gia sư</th>
+                    <th>Ngày ký</th>
+                    <th>Trạng thái</th>
+                    <th>File hợp đồng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyễn Văn D</td>
+                    <td>15/10/2025</td>
+                    <td><span class="badge bg-success">Hiệu lực</span></td>
+                    <td><a href="#">📄 Xem hợp đồng</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Phạm Thị E</td>
+                    <td>20/10/2025</td>
+                    <td><span class="badge bg-secondary">Hết hạn</span></td>
+                    <td><a href="#">📄 Gia hạn</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <h5 class="fw-bold text-success">Chính sách & quy định</h5>
+        <p>📌 Các chính sách được ban hành bởi Trung tâm Gia sư Amsterdam Bảo Tuân, bao gồm:</p>
+        <ul>
+            <li>Điều kiện nhận lớp và thanh toán phí</li>
+            <li>Trách nhiệm và quyền lợi của gia sư</li>
+            <li>Chính sách hủy lớp và bồi hoàn</li>
+        </ul>
+        <a href="~/docs/ChinhSachGiaSu.pdf" class="btn btn-outline-primary mt-2">📘 Xem toàn bộ chính sách (PDF)</a>
+    </div>
+</div>

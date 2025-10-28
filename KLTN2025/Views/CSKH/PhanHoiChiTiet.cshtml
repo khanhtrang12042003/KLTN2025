@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết phản hồi";
+    Layout = "~/Views/Shared/_CSKHLayout.cshtml";
+}
+
+<h5>📋 Thông tin phản hồi</h5>
+<p><b>Mã phản hồi:</b> @ViewBag.PhanHoiID</p>
+<p><b>Người gửi:</b> Nguyễn Minh Khang</p>
+<p><b>Nội dung:</b> Gia sư đi dạy muộn và nghỉ giữa chừng không báo trước.</p>
+<p><b>Ngày gửi:</b> 12/10/2025</p>
+
+<hr />
+<h5>🛠️ Xử lý phản hồi</h5>
+<form method="post">
+    <div class="mb-3">
+        <label>Trạng thái xử lý</label>
+        <select class="form-select">
+            <option selected>Đang chờ</option>
+            <option>Đã xử lý</option>
+            <option>Chuyển cho nhân sự</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Ghi chú xử lý</label>
+        <textarea class="form-control" rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary">💾 Lưu</button>
+    <a href="/CSKH/DanhSachPhanHoi" class="btn btn-secondary">⬅ Quay lại</a>
+</form>

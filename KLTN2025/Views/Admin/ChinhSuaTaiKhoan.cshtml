@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Trang quản lý người dùng";
+    ViewBag.AdminName = "Admin Bảo Tuân"; // Tên hiển thị góc phải
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container mt-4">
+    <h3 class="fw-bold text-primary mb-3">✏️ Chỉnh sửa tài khoản</h3>
+
+    <form class="card p-4 shadow-sm">
+        <div class="mb-3">
+            <label class="form-label">Họ tên</label>
+            <input type="text" class="form-control" value="Lê Thị B" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" value="nhansu@amsterdam.vn" disabled />
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Vai trò</label>
+                <select class="form-select">
+                    <option selected>Nhân sự</option>
+                    <option>Tư vấn PH</option>
+                    <option>CSKH</option>
+                    <option>Admin</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Trạng thái</label>
+                <select class="form-select">
+                    <option selected>Hoạt động</option>
+                    <option>Khóa</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <a href="/Admin/QuanLyNguoiDung" class="btn btn-secondary">Hủy</a>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </div>
+    </form>
+</div>

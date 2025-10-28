@@ -1,0 +1,127 @@
+﻿@{
+    var title = ViewData["Title"] ?? "Trang tư vấn phụ huynh - Trung tâm Gia sư Amsterdam Bảo Tuân";
+    var userName = ViewBag.UserName ?? "Tư vấn viên";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f7f8fb;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background-color: #ffffff;
+            border-right: 1px solid #e0e0e0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+            .sidebar .logo {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+                .sidebar .logo img {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .sidebar .logo h5 {
+                    font-size: 15px;
+                    color: #004aad;
+                    font-weight: 600;
+                }
+
+            .sidebar nav a {
+                display: block;
+                color: #333;
+                padding: 12px 22px;
+                text-decoration: none;
+                transition: all 0.2s;
+                border-left: 4px solid transparent;
+                font-weight: 500;
+            }
+
+                .sidebar nav a:hover, .sidebar nav a.active {
+                    background-color: #e8f0fe;
+                    border-left: 4px solid #2563eb;
+                    color: #2563eb;
+                }
+
+        .logout-btn {
+            margin: 20px;
+            display: block;
+            text-align: center;
+            border-radius: 6px;
+            background-color: #dc3545;
+            color: white !important;
+            padding: 10px;
+        }
+
+            .logout-btn:hover {
+                background-color: #b02a37;
+            }
+
+        .header {
+            position: fixed;
+            left: 250px;
+            right: 0;
+            top: 0;
+            background: #fff;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+            .header .welcome {
+                color: #333;
+                font-weight: 500;
+            }
+
+        .content {
+            margin-left: 250px;
+            margin-top: 70px;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="~/img/Logo-1.png" alt="Logo Amsterdam" />
+            <h5>Tư vấn PH - Bảo Tuân</h5>
+        </div>
+        <nav>
+            <a href="/TuVanPH/Index" class="@(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">🏠 Dashboard</a>
+            <a href="/TuVanPH/QuanLyLopHoc" class="@(ViewContext.RouteData.Values["action"].ToString() == "QuanLyLopHoc" ? "active" : "")">📋 Quản lý lớp học</a>
+            <a href="/TuVanPH/ThemLopHoc" class="@(ViewContext.RouteData.Values["action"].ToString() == "ThemLopHoc" ? "active" : "")">➕ Thêm lớp mới</a>
+            <a href="/TuVanPH/SapLichHocThu" class="@(ViewContext.RouteData.Values["action"].ToString() == "SapLichHocThu" ? "active" : "")">🗓️ Sắp lịch học thử</a>
+        </nav>
+        <a href="/TaiKhoan/DangXuat" class="logout-btn">🚪 Đăng xuất</a>
+    </div>
+
+    <div class="header">
+        <h5>@title</h5>
+        <div class="welcome">👋 Xin chào, <strong>@userName</strong></div>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+</body>
+</html>
