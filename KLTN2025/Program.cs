@@ -1,6 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using KLTN2025.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<KLTNContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("KLTNConnection")));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
