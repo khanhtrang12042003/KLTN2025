@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var userName = Context.Session.GetString("UserName");
+    var role = Context.Session.GetString("Role");
+    var title = ViewData["Title"] ?? "Trang người dùng";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@title - Trung tâm Gia sư Amsterdam Bảo Tuân</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout-user.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="/">
+                <img src="~/images/logo.png" alt="Logo" width="40" class="me-2" />
+                Trung tâm Gia sư Amsterdam
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUser" aria-controls="navbarUser" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+
+                    @if (role == "giasu")
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/GiaSu/GiaSuTrangChu">Lớp học</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/GiaSu/Hoso">Hồ sơ của tôi</a></li>
+                    }
+                    else if (role == "phuhuynh")
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/PhuHuynh/PhuHuynhTrangChu">Lớp của tôi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/PhuHuynh/TaoLopMoi">Đăng lớp mới</a></li>
+                    }
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-primary fw-semibold" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            👋 Hi, @userName
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/TaiKhoan/ThongTinCaNhan">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item text-danger" href="/TaiKhoan/DangXuat">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer mt-5 bg-light text-center py-3 border-top">
+        <div class="container">
+            <p class="mb-0 text-muted">© 2025 Trung tâm Gia sư Amsterdam Bảo Tuân. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

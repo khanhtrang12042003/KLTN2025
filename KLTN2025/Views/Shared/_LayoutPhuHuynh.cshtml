@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userName = HttpContextAccessor.HttpContext.Session.GetString("UserName");
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Trung tâm Gia sư Amsterdam</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout-phuhuynh.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="giasu-header shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+                <img src="~/img/Logo-1.png" alt="Logo" class="logo me-2" />
+                <h4 class="mb-0 text-primary fw-bold">Trung tâm Gia sư Amsterdam</h4>
+            </div>
+
+            <nav class="nav giasu-nav">
+                <a class="nav-link" asp-controller="PhuHuynh" asp-action="PhuHuynhTrangChu">Trang chủ</a>
+                <a class="nav-link" asp-controller="PhuHuynh" asp-action="TimGiaSu">Tìm gia sư</a>
+                <a class="nav-link" asp-controller="PhuHuynh" asp-action="QuanLyLopHoc">Quản lý lớp</a>
+                <a class="nav-link" asp-controller="PhuHuynh" asp-action="DanhGiaGiaSu">Đánh giá</a>
+            </nav>
+
+            <div class="user-info d-flex align-items-center">
+                @if (!string.IsNullOrEmpty(userName))
+                {
+                    <span class="me-3">Xin chào, <strong>@userName</strong></span>
+                    <a asp-controller="TaiKhoan" asp-action="DangXuat" class="btn btn-outline-primary btn-sm">Đăng xuất</a>
+                }
+                else
+                {
+                    <a asp-controller="TaiKhoan" asp-action="DangNhap" class="btn btn-primary btn-sm me-2">Đăng nhập</a>
+                    <a asp-controller="TaiKhoan" asp-action="DangKy" class="btn btn-outline-secondary btn-sm">Đăng ký</a>
+                }
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung -->
+    <main class="container py-4">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="giasu-footer text-center py-3 mt-5">
+        <p class="text-muted mb-0">&copy; 2025 Trung tâm Gia sư Amsterdam. All rights reserved.</p>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

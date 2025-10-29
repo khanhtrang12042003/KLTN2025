@@ -12,12 +12,18 @@
             <div class="card shadow border-0 p-4">
                 <h3 class="fw-bold text-center mb-4 @(isTutor ? "text-warning" : "text-primary")">@title</h3>
 
+                @if (ViewBag.ThongBao != null)
+                {
+                    <div class="alert alert-danger text-center">@ViewBag.ThongBao</div>
+                }
+
                 <form method="post" action="/TaiKhoan/DangKy">
+                    @Html.AntiForgeryToken()
                     <input type="hidden" name="role" value="@role" />
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Họ và tên</label>
-                        <input type="text" name="hoten" class="form-control" required />
+                        <input type="text" name="hoTen" class="form-control" required />
                     </div>
 
                     <div class="mb-3">
@@ -26,13 +32,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Mật khẩu</label>
-                        <input type="password" name="matkhau" class="form-control" required />
+                        <label class="form-label fw-semibold">Tên đăng nhập</label>
+                        <input type="text" name="tenDangNhap" class="form-control" required />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Xác nhận mật khẩu</label>
-                        <input type="password" name="xacnhan" class="form-control" required />
+                        <label class="form-label fw-semibold">Mật khẩu</label>
+                        <input type="password" name="matKhau" class="form-control" required />
                     </div>
 
                     <button type="submit" class="btn w-100 fw-semibold @(isTutor ? "btn-warning" : "btn-primary")">

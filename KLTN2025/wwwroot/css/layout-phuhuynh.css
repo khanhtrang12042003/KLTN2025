@@ -1,0 +1,104 @@
+﻿/* =============================
+   Layout Phụ huynh - Cùng theme với Gia sư
+   ============================= */
+
+body {
+    background-color: #f8f9fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.giasu-header {
+    background-color: #ffffff;
+    border-bottom: 2px solid #007bff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    height: 42px;
+    width: auto;
+}
+
+/* Thanh điều hướng */
+.giasu-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+    .giasu-nav .nav-link {
+        color: #333;
+        font-weight: 500;
+        font-size: 1rem;
+        position: relative;
+        transition: color 0.2s ease-in-out;
+        text-decoration: none;
+        padding: 6px 0;
+    }
+
+        .giasu-nav .nav-link:hover,
+        .giasu-nav .nav-link.active {
+            color: #007bff;
+        }
+
+        /* Hiệu ứng gạch chân mượt */
+        .giasu-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .giasu-nav .nav-link:hover::after,
+        .giasu-nav .nav-link.active::after {
+            width: 70%;
+        }
+
+/* User info */
+.user-info .btn {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+    .user-info .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 6px rgba(0, 123, 255, 0.25);
+    }
+
+/* Main content */
+main {
+    min-height: 75vh;
+}
+
+/* Footer */
+.giasu-footer {
+    background-color: #f1f3f5;
+    border-top: 1px solid #ddd;
+    color: #555;
+    padding: 12px 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .giasu-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+        .giasu-nav .nav-link {
+            margin: 6px 8px;
+        }
+}

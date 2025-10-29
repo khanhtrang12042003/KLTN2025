@@ -12,7 +12,18 @@
             <div class="card shadow border-0 p-4">
                 <h3 class="fw-bold text-center mb-4 @(isTutor ? "text-warning" : "text-primary")">@title</h3>
 
+                @if (ViewBag.ThongBao != null)
+                {
+                    <div class="alert alert-danger text-center">@ViewBag.ThongBao</div>
+                }
+
+                @if (TempData["ThongBao"] != null)
+                {
+                    <div class="alert alert-success text-center">@TempData["ThongBao"]</div>
+                }
+
                 <form method="post" action="/TaiKhoan/DangNhap">
+                    @Html.AntiForgeryToken()
                     <input type="hidden" name="role" value="@role" />
 
                     <div class="mb-3">
@@ -29,7 +40,9 @@
                         <a href="/TaiKhoan/QuenMatKhau" class="text-decoration-none small text-muted">Quên mật khẩu?</a>
                     </div>
 
-                    <button type="submit" class="btn w-100 fw-semibold @(isTutor ? "btn-warning" : "btn-primary")">Đăng nhập</button>
+                    <button type="submit" class="btn w-100 fw-semibold @(isTutor ? "btn-warning" : "btn-primary")">
+                        Đăng nhập
+                    </button>
 
                     <div class="text-center mt-3">
                         <span class="text-muted small">Chưa có tài khoản?</span>

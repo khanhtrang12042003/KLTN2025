@@ -1,0 +1,12 @@
+﻿.navbar-brand img {
+    vertical-align: middle;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+}
+
+.footer {
+    font-size: 0.9rem;
+    color: #666;
+}

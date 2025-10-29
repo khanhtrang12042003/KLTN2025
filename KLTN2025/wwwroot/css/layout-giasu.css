@@ -1,0 +1,118 @@
+﻿/* =============================
+   Layout Gia sư - Trung tâm Amsterdam
+   ============================= */
+
+body {
+    background-color: #f8f9fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.giasu-header {
+    background-color: #ffffff;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Logo */
+.logo {
+    height: 42px;
+    width: auto;
+}
+
+/* Header Container */
+.giasu-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* 🔥 đảm bảo không bị xuống hàng */
+    gap: 10px;
+}
+
+/* Navigation */
+.giasu-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* khoảng cách đều giữa các link */
+    flex-wrap: nowrap; /* 🔥 ép nằm 1 hàng */
+}
+
+    .giasu-nav .nav-link {
+        color: #333;
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 6px;
+        position: relative;
+        white-space: nowrap; /* 🔥 ngăn text xuống dòng */
+        transition: color 0.25s, background-color 0.25s;
+    }
+
+        .giasu-nav .nav-link:hover,
+        .giasu-nav .nav-link.active {
+            color: #007bff;
+            background-color: #eef5ff;
+            text-decoration: none;
+        }
+
+        /* Gạch underline animation */
+        .giasu-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .giasu-nav .nav-link:hover::after,
+        .giasu-nav .nav-link.active::after {
+            width: 70%;
+        }
+
+/* User Info */
+.user-info {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+    .user-info span {
+        color: #333;
+        font-size: 0.95rem;
+    }
+
+    .user-info .btn {
+        border-radius: 20px;
+        font-size: 0.9rem;
+        padding: 5px 14px;
+        transition: all 0.25s;
+    }
+
+    .user-info .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+/* Footer */
+.giasu-footer {
+    background-color: #f1f3f5;
+    border-top: 1px solid #ddd;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 992px) {
+    .giasu-header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .giasu-nav {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
