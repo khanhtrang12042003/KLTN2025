@@ -1,4 +1,4 @@
-namespace KLTN2025.Models
+﻿namespace KLTN2025.Models
 {
     public class ErrorViewModel
     {

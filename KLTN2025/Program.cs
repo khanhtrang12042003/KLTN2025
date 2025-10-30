@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using KLTN2025.Data;
+using KLTN2025.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,13 +9,15 @@ builder.Services.AddDbContext<KLTNContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("KLTNConnection")));
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpContextAccessor(); // ✅ Thêm dòng này
+builder.Services.AddHttpContextAccessor(); // ✅ Dùng cho session, cookie, context
 
+// ✅ Đăng ký EmailService (nằm trong thư mục Services)
+builder.Services.AddTransient<EmailService>();
 
-// ✅ Cấu hình Session ở đây
+// ✅ Cấu hình Session
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(60); // thời gian lưu session
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
