@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Hồ sơ đang chờ duyệt";
+    Layout = "~/Views/Shared/_LayoutGiaSu.cshtml";
+}
+
+<div class="container py-5">
+    <div class="card shadow p-4 text-center mx-auto" style="max-width: 600px;">
+        <h3 class="fw-bold text-primary mb-3">📄 Hồ sơ của bạn đang chờ duyệt</h3>
+
+        <p class="text-muted fs-5">
+            Hồ sơ đã được gửi đến bộ phận <strong>Nhân sự</strong>.<br />
+            Vui lòng chờ kết quả phê duyệt trong <strong>24–48 giờ làm việc</strong>.
+        </p>
+
+        <div class="my-4">
+            <img src="/img/pending_review.png" alt="Chờ duyệt" width="200" class="shadow-sm rounded" />
+        </div>
+
+        <a href="/GiaSu/GiaSuTrangChu" class="btn btn-primary px-4">⬅ Quay lại Trang chính</a>
+    </div>
+</div>

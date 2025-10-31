@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN2025.Migrations
 {
     [DbContext(typeof(KLTNContext))]
-    [Migration("20251029154947_InitialCreate")]
+    [Migration("20251030165907_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -98,6 +98,9 @@ namespace KLTN2025.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasDefaultValue("Chua lên d?i h?c");
 
+                    b.Property<DateTime?>("NgayCapNhat")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateOnly>("NgaySinh")
                         .HasColumnType("date");
 
@@ -105,8 +108,9 @@ namespace KLTN2025.Migrations
                         .HasColumnType("int")
                         .HasColumnName("NguoiDungID");
 
-                    b.Property<byte>("TrangThai")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("TrangThai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TungHocTai")
                         .HasMaxLength(255)

@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Hồ sơ gia sư";
-    Layout = "~/Views/Shared/_LayoutGiaSU.cshtml";
+    Layout = "~/Views/Shared/_LayoutGiaSu.cshtml";
 }
 
 <div class="container mt-4 mb-5">
@@ -10,7 +10,10 @@
         <div class="col-md-10">
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
-                    <form method="post" enctype="multipart/form-data">
+                    <!-- ✅ Sửa chỗ này -->
+                    <form asp-action="CapNhatHoSo" asp-controller="GiaSu" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+
                         <div class="row g-3">
                             <div class="col-md-4 text-center">
                                 <img src="~/img/avatar-default.png" alt="Ảnh đại diện" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;" />
@@ -89,6 +92,16 @@
                             </div>
                         </div>
                     </form>
+
+                    <!-- ✅ Hiển thị thông báo nếu có -->
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success mt-4 text-center">@TempData["Success"]</div>
+                    }
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger mt-4 text-center">@TempData["Error"]</div>
+                    }
                 </div>
             </div>
         </div>

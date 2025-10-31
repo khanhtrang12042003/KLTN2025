@@ -12,14 +12,14 @@
             <div class="card shadow border-0 p-4">
                 <h3 class="fw-bold text-center mb-4 @(isTutor ? "text-warning" : "text-primary")">@title</h3>
 
-                @if (ViewBag.ThongBao != null)
-                {
-                    <div class="alert alert-danger text-center">@ViewBag.ThongBao</div>
-                }
-
                 @if (TempData["ThongBao"] != null)
                 {
                     <div class="alert alert-success text-center">@TempData["ThongBao"]</div>
+                }
+
+                @if (ViewBag.ThongBao != null)
+                {
+                    <div class="alert alert-danger text-center">@ViewBag.ThongBao</div>
                 }
 
                 <form method="post" action="/TaiKhoan/DangNhap">
@@ -27,8 +27,8 @@
                     <input type="hidden" name="role" value="@role" />
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Email</label>
-                        <input type="email" name="email" class="form-control" required placeholder="Nhập email của bạn" />
+                        <label class="form-label fw-semibold">Email hoặc Tên đăng nhập</label>
+                        <input type="text" name="emailOrUsername" class="form-control" required placeholder="Nhập email hoặc tên đăng nhập" />
                     </div>
 
                     <div class="mb-3">

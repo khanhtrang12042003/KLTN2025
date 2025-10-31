@@ -19,7 +19,8 @@ public partial class GiaSu
 
     public string KhuVucDay { get; set; } = null!;
 
-    public byte TrangThai { get; set; }
+    public string TrangThai { get; set; } = "Chưa duyệt";
+    public DateTime? NgayCapNhat { get; set; }
 
     public string? AnhDaiDien { get; set; }
 
@@ -38,6 +39,8 @@ public partial class GiaSu
     public string? AnhSinhVien { get; set; }
 
     public string? BangTotNghiep { get; set; }
+   
+
 
     public virtual ICollection<HoSoGiaSu> HoSoGiaSus { get; set; } = new List<HoSoGiaSu>();
 
