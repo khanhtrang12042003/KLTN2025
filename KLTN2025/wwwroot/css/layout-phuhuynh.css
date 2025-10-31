@@ -1,12 +1,17 @@
 ﻿/* =============================
-   Layout Phụ huynh - Cùng theme với Gia sư
+Layout Phụ huynh - Cùng theme với Gia sư
    ============================= */
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
 body {
+    display: flex;
+    flex-direction: column;
     background-color: #f8f9fb;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    margin: 0;
     padding: 0;
 }
 
@@ -79,6 +84,7 @@ body {
 
 /* Main content */
 main {
+    flex: 1;
     min-height: 75vh;
 }
 

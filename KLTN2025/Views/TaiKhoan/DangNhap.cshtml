@@ -1,9 +1,8 @@
 ﻿@{
-    var role = Context.Request.Query["role"].ToString().ToLower();
-    var isTutor = role == "giasu";
-    var title = isTutor ? "Đăng nhập Gia sư" : "Đăng nhập Phụ huynh";
-    ViewData["Title"] = title + " - Trung tâm Gia sư Amsterdam Bảo Tuân";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    string? VaiTro = Context.Request.Query["VaiTro"].ToString().ToLower();
+    bool isTutor = VaiTro == "giasu";
+    string? title = isTutor ? "Đăng nhập Gia sư" : "Đăng nhập Phụ huynh";
+    ViewData["Title"] = $"{title} -";
 }
 
 <div class="container py-5">
@@ -24,16 +23,16 @@
 
                 <form method="post" action="/TaiKhoan/DangNhap">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="role" value="@role" />
+                    <input type="hidden" name="VaiTro" value="@VaiTro" />
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Email hoặc Tên đăng nhập</label>
-                        <input type="text" name="emailOrUsername" class="form-control" required placeholder="Nhập email hoặc tên đăng nhập" />
+                        <label class="form-label fw-semibold">Tên đăng nhập</label>
+                        <input type="text" name="TenDangNhap" class="form-control" />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Mật khẩu</label>
-                        <input type="password" name="password" class="form-control" required placeholder="Nhập mật khẩu" />
+                        <input type="password" name="MatKhau" class="form-control" />
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -46,7 +45,8 @@
 
                     <div class="text-center mt-3">
                         <span class="text-muted small">Chưa có tài khoản?</span>
-                        <a href="/TaiKhoan/DangKy?role=@role" class="text-decoration-none fw-semibold">Đăng ký ngay</a>
+                        <a href="/TaiKhoan/DangKy?VaiTro=@VaiTro" class="text-decoration-none fw-semibold">Đăng ký
+                            ngay</a>
                     </div>
                 </form>
             </div>

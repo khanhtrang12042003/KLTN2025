@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +34,10 @@
             <div class="user-info d-flex align-items-center">
                 @if (!string.IsNullOrEmpty(userName))
                 {
-                    <span class="me-3">Xin chào, <strong>@userName</strong></span>
+                    <span class="me-3">Xin chào,
+                        <a class="nav-link" asp-controller="TaiKhoan" asp-action="CapNhapTaiKhoan">
+                            <strong id="HoTen"> @userName </strong></a>
+                    </span>
                     <a asp-controller="TaiKhoan" asp-action="DangXuat" class="btn btn-outline-primary btn-sm">Đăng xuất</a>
                 }
                 else
@@ -58,4 +62,5 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

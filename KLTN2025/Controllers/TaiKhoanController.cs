@@ -4,6 +4,8 @@ using KLTN2025.Models;
 using KLTN2025.Services;
 using System.Security.Cryptography;
 using System.Text;
+using KLTN2025.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace KLTN2025.Controllers
 {
@@ -40,30 +42,31 @@ namespace KLTN2025.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DangKy(string hoTen, string tenDangNhap, string email, string matKhau, string role)
+        public IActionResult DangKy(DangKyDTO dangKyDTO)
         {
-            if (string.IsNullOrEmpty(tenDangNhap) || string.IsNullOrEmpty(matKhau))
+            if (string.IsNullOrEmpty(dangKyDTO.TenDangNhap) || string.IsNullOrEmpty(dangKyDTO.MatKhau))
             {
                 ViewBag.ThongBao = "Tên đăng nhập và mật khẩu không được để trống!";
-                ViewBag.Role = role;
+                ViewBag.VaiTro = dangKyDTO.VaiTro;
                 return View();
             }
 
-            var tonTai = _context.NguoiDungs.FirstOrDefault(u => u.TenDangNhap == tenDangNhap || u.Email == email);
+            var tonTai = _context.NguoiDungs.FirstOrDefault
+            (u => u.TenDangNhap == dangKyDTO.TenDangNhap || u.Email == dangKyDTO.Email);
             if (tonTai != null)
             {
                 ViewBag.ThongBao = "Tên đăng nhập hoặc email đã tồn tại!";
-                ViewBag.Role = role;
+                ViewBag.VaiTro = dangKyDTO.VaiTro;
                 return View();
             }
 
             var nguoiDung = new NguoiDung
             {
-                TenDangNhap = tenDangNhap,
-                MaKhauHash = MaHoaMatKhau(matKhau),
-                Email = email,
-                HoTen = hoTen,
-                VaiTro = role,
+                TenDangNhap = dangKyDTO.TenDangNhap,
+                MaKhauHash = MaHoaMatKhau(dangKyDTO.MatKhau),
+                Email = dangKyDTO.Email,
+                HoTen = dangKyDTO.HoTen,
+                VaiTro = dangKyDTO.VaiTro,
                 GioiTinh = false,
                 Sdt = "",
                 TaoVaoLuc = DateTime.Now
@@ -73,7 +76,7 @@ namespace KLTN2025.Controllers
             _context.SaveChanges();
 
             TempData["UserId"] = nguoiDung.NguoiDungId;
-            TempData["ThongBao"] = $"🎉 Đăng ký {(role == "giasu" ? "Gia sư" : "Phụ huynh")} thành công! Mời bạn đăng nhập để tiếp tục.";
+            TempData["ThongBao"] = $"🎉 Đăng ký {(dangKyDTO.VaiTro == "giasu" ? "Gia sư" : "Phụ huynh")} thành công! Mời bạn đăng nhập để tiếp tục.";
             return RedirectToAction("XacNhanDangKy");
 
         }
@@ -106,34 +109,32 @@ namespace KLTN2025.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DangNhap(string emailOrUsername, string password, string role)
+        public IActionResult DangNhap(DangNhapDTO dangNhapDTO)
         {
-            if (string.IsNullOrEmpty(emailOrUsername) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(dangNhapDTO.TenDangNhap) || string.IsNullOrEmpty(dangNhapDTO.MatKhau))
             {
                 ViewBag.ThongBao = "Vui lòng nhập đầy đủ thông tin đăng nhập!";
-                ViewBag.Role = role;
+                ViewBag.VaiTro = dangNhapDTO.VaiTro;
                 return View();
             }
 
-            string mkMaHoa = MaHoaMatKhau(password);
+            string mkMaHoa = MaHoaMatKhau(dangNhapDTO.MatKhau);
 
             // ✅ Cho phép đăng nhập bằng Email hoặc Tên đăng nhập
-            var nguoiDung = _context.NguoiDungs.FirstOrDefault(u =>
-                (u.Email == emailOrUsername || u.TenDangNhap == emailOrUsername)
-                && u.MaKhauHash == mkMaHoa
-                && u.VaiTro.ToLower() == role.ToLower());
+            var nguoiDung = _context.NguoiDungs.FirstOrDefault(u => u.TenDangNhap == dangNhapDTO.TenDangNhap
+                && u.MaKhauHash == mkMaHoa);
 
             if (nguoiDung == null)
             {
                 ViewBag.ThongBao = "Sai tài khoản hoặc mật khẩu, hoặc bạn chọn sai vai trò!";
-                ViewBag.Role = role;
+                ViewBag.VaiTro = dangNhapDTO.VaiTro;
                 return View();
             }
 
             // ✅ Lưu session đăng nhập
             HttpContext.Session.SetString("UserName", nguoiDung.HoTen);
             HttpContext.Session.SetString("Role", nguoiDung.VaiTro);
-            HttpContext.Session.SetInt32("NguoiDungId", nguoiDung.NguoiDungId); // ✅ đổi từ UserId thành NguoiDungId
+            HttpContext.Session.SetInt32("NguoiDungId", nguoiDung.NguoiDungId);
 
 
             // ✅ Chuyển hướng tùy vai trò
@@ -322,5 +323,51 @@ namespace KLTN2025.Controllers
             }
         }
 
+        // Cập nhập thông tin
+        [HttpGet]
+        public async Task<IActionResult> CapNhapTaiKhoan()
+        {
+            int? nguoiDungId = HttpContext.Session.GetInt32("NguoiDungId");
+            if (nguoiDungId is null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+            NguoiDung? nguoiDung = await _context.NguoiDungs.FindAsync(nguoiDungId);
+            if (nguoiDung is null)
+            {
+                return NotFound("Người dùng không tồn tại");
+            }
+
+            CapNhapTKDTO capNhapTKDTO = new CapNhapTKDTO
+            {
+                NguoiDungId = nguoiDung.NguoiDungId,
+                HoTen = nguoiDung.HoTen,
+                Email = nguoiDung.Email,
+                GioiTinh = nguoiDung.GioiTinh ? "Nữ" : "Nam",
+                SDT = nguoiDung.Sdt
+            };
+            return View(capNhapTKDTO);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CapNhapTaiKhoan(CapNhapTKDTO capNhapTKDTO)
+        {
+            NguoiDung? nguoiDung = await _context.NguoiDungs.FindAsync(capNhapTKDTO.NguoiDungId);
+
+            if (nguoiDung is null) return NotFound();
+
+            bool gt = false;
+            if (capNhapTKDTO.GioiTinh == "Nữ")
+                gt = true;
+
+            if (!string.IsNullOrEmpty(capNhapTKDTO.HoTen)) nguoiDung.HoTen = capNhapTKDTO.HoTen;
+            if (!string.IsNullOrEmpty(capNhapTKDTO.Email)) nguoiDung.Email = capNhapTKDTO.Email;
+            if (!string.IsNullOrEmpty(capNhapTKDTO.GioiTinh)) nguoiDung.GioiTinh = gt;
+            if (!string.IsNullOrEmpty(capNhapTKDTO.SDT)) nguoiDung.Sdt = capNhapTKDTO.SDT;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("CapNhapTaiKhoan");
+        }
     }
 }
