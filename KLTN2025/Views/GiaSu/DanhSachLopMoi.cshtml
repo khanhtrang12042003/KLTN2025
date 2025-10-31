@@ -1,6 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Danh sách lớp mới";
     Layout = "~/Views/Shared/_LayoutGiaSU.cshtml";
+
+    // Dữ liệu mẫu
+    var danhSachLop = new List<dynamic>
+    {
+        new { LopHocId = 1, MonHoc = "Toán", KhoiLop = "8", DiaDiem = "Cầu Giấy, Hà Nội", SoBuoiHoc = 3, LichHoc = "T2 - T4 - T6 (17h - 19h)", HocPhi = 250000 },
+        new { LopHocId = 2, MonHoc = "Văn", KhoiLop = "9", DiaDiem = "Ba Đình, Hà Nội", SoBuoiHoc = 2, LichHoc = "T3 - T5 (18h - 20h)", HocPhi = 230000 },
+        new { LopHocId = 3, MonHoc = "Anh", KhoiLop = "10", DiaDiem = "Nam Từ Liêm, Hà Nội", SoBuoiHoc = 3, LichHoc = "T2 - T4 - T6 (18h - 20h)", HocPhi = 270000 },
+    };
 }
 
 <div class="container mt-4">
@@ -17,15 +25,12 @@
                         <option>Toán</option>
                         <option>Văn</option>
                         <option>Anh</option>
-                        <option>Lý</option>
-                        <option>Hóa</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label fw-semibold">Khối lớp</label>
                     <select class="form-select">
                         <option>Tất cả</option>
-                        <option>Lớp 1-5</option>
                         <option>Lớp 6-9</option>
                         <option>Lớp 10-12</option>
                     </select>
@@ -34,10 +39,9 @@
                     <label class="form-label fw-semibold">Khu vực</label>
                     <select class="form-select">
                         <option>Tất cả</option>
-                        <option>TP. Hà Nội</option>
-                        <option>TP. Hồ Chí Minh</option>
-                        <option>Đà Nẵng</option>
-                        <option>Nghệ An</option>
+                        <option>Cầu Giấy</option>
+                        <option>Nam Từ Liêm</option>
+                        <option>Ba Đình</option>
                     </select>
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
@@ -49,20 +53,31 @@
 
     <!-- Danh sách lớp -->
     <div class="row g-4">
-        @* Dữ liệu mẫu – sau này sẽ lấy từ DB *@
-        @for (int i = 1; i <= 6; i++)
+        @foreach (var item in danhSachLop)
         {
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 border-0">
                     <div class="card-body">
-                        <h5 class="card-title text-primary fw-bold">Lớp @i - Toán 8</h5>
-                        <p class="mb-1"><strong>Khu vực:</strong> Cầu Giấy, Hà Nội</p>
-                        <p class="mb-1"><strong>Số buổi/tuần:</strong> 3</p>
-                        <p class="mb-1"><strong>Lịch học:</strong> T2 - T4 - T6 (17h - 19h)</p>
-                        <p class="mb-1"><strong>Học phí:</strong> 250.000đ/buổi</p>
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-outline-primary btn-sm w-50 me-1">Xem chi tiết</a>
-                            <a href="#" class="btn btn-success btn-sm w-50">Ứng tuyển</a>
+                        <h5 class="card-title text-primary fw-bold">
+                            Lớp @item.LopHocId - @item.MonHoc @item.KhoiLop
+                        </h5>
+                        <p class="mb-1"><strong>Khu vực:</strong> @item.DiaDiem</p>
+                        <p class="mb-1"><strong>Số buổi/tuần:</strong> @item.SoBuoiHoc</p>
+                        <p class="mb-1"><strong>Lịch học:</strong> @item.LichHoc</p>
+                        <p class="mb-1"><strong>Học phí:</strong> @string.Format("{0:N0}đ/buổi", item.HocPhi)</p>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <a asp-action="ChiTietLopHoc"
+                               asp-route-id="@item.LopHocId"
+                               class="btn btn-outline-primary btn-sm w-50 me-1">
+                                Xem chi tiết
+                            </a>
+
+                            <a asp-action="UngTuyenLopHoc"
+                               asp-route-id="@item.LopHocId"
+                               class="btn btn-outline-success btn-sm w-50 ms-1">
+                                Ứng tuyển
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model KLTN2025.Models.LopHoc
+
+@{
     ViewData["Title"] = "Chi tiết lớp học";
     Layout = "~/Views/Shared/_LayoutGiaSU.cshtml";
 }
@@ -6,44 +8,50 @@
 <div class="container mt-4 mb-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/GiaSu/DanhSachLopMoi">Danh sách lớp mới</a></li>
-            <li class="breadcrumb-item active" aria-current="page">E0074</li>
+            <li class="breadcrumb-item"><a asp-action="DanhSachLopMoi">Danh sách lớp mới</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lớp @Model.LopHocId</li>
         </ol>
     </nav>
 
     <div class="row">
         <!-- Thông tin lớp -->
         <div class="col-md-7">
-            <h3 class="fw-bold text-primary mb-2">Chi tiết lớp E0074</h3>
-            <p><strong>Tình trạng:</strong> <span class="badge bg-success">Đang còn</span></p>
+            <h3 class="fw-bold text-primary mb-2">Chi tiết lớp @Model.LopHocId</h3>
+            <p>
+                <strong>Tình trạng:</strong>
+                <span class="badge @(Model.TrangThai == "Đang còn" ? "bg-success" : "bg-secondary")">
+                    @Model.TrangThai
+                </span>
+            </p>
 
             <hr />
 
-            <p><i class="bi bi-book"></i> <strong>Toán học – Lớp 8</strong></p>
-            <p><i class="bi bi-geo-alt"></i> Thôn Phượng Đồng, Chương Mỹ, Hà Nội</p>
-            <p><i class="bi bi-cash-coin"></i> 180.000 ₫/buổi, 2 buổi/tuần</p>
-            <p><i class="bi bi-person"></i> Yêu cầu: Sinh viên Nữ</p>
-            <p><i class="bi bi-clock"></i> Thời gian có thể học: Linh hoạt, sắp xếp với phụ huynh</p>
+            <p><i class="bi bi-book"></i> <strong>@Model.MonHoc – Lớp @Model.KhoiLop</strong></p>
+            <p><i class="bi bi-geo-alt"></i> @Model.DiaDiem</p>
+            <p><i class="bi bi-cash-coin"></i> @string.Format("{0:N0} ₫/buổi", Model.HocPhi), @Model.SoBuoiHoc buổi/tuần</p>
+            <p><i class="bi bi-clock"></i> @Model.LichHoc</p>
 
-            <h6 class="fw-bold mt-4">Đặc điểm học sinh:</h6>
-            <ul>
-                <li>Giới tính: Nữ</li>
-                <li>Học sinh có học lực trung bình</li>
-            </ul>
-
-            <h6 class="fw-bold mt-4">Thông tin bổ sung:</h6>
-            <p>Gia sư sẽ bám sát chương trình học của học sinh để hướng dẫn và giảng dạy hiệu quả.</p>
-
-            <div class="alert alert-info">
-                <strong>Mức thu nhập:</strong> 1.440.000 ₫ / tháng
+            <div class="alert alert-info mt-3">
+                <strong>Mức thu nhập dự kiến:</strong>
+                @string.Format("{0:N0} ₫ / tháng", (Model.HocPhi ?? 0) * (Model.SoBuoiHoc ?? 0) * 4)
             </div>
 
-            <div class="mt-4">
-                <a href="/GiaSu/UngTuyenLopHoc" class="btn btn-warning fw-bold text-white px-4">
-                    Ứng tuyển lớp này
-                </a>
-            </div>
+            <!-- Form ứng tuyển -->
+            <form asp-action="UngTuyen" method="post" class="mt-3">
+                <input type="hidden" name="lopHocId" value="@Model.LopHocId" />
+                <input type="hidden" name="giaSuId" value="@ViewBag.GiaSuId" />
 
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="dongYDieuKhoan">
+                    <label class="form-check-label" for="dongYDieuKhoan">
+                        Tôi đã đọc và đồng ý với <strong>Điều khoản & Chính sách nhận lớp</strong>
+                    </label>
+                </div>
+
+                <button type="submit" id="btnUngTuyen" class="btn btn-warning fw-bold text-white px-4" disabled>
+                    Xác nhận ứng tuyển
+                </button>
+            </form>
 
             <p class="mt-3 text-muted small">
                 Phí nhận lớp: 40% (chỉ nộp phí 1 lần, những tháng tiếp theo dạy không mất phí)
@@ -54,7 +62,7 @@
         <div class="col-md-5">
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-2">
-                    <iframe src="https://www.google.com/maps?q=Lộc+tông+TopLife,+Phượng+Đồng,+Chương+Mỹ,+Hà+Nội&output=embed"
+                    <iframe src="https://www.google.com/maps?q=@Uri.EscapeDataString(Model.DiaDiem ?? "Hà Nội")&output=embed"
                             width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                     <p class="text-muted mt-2 small">
@@ -65,3 +73,14 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        const checkbox = document.getElementById('dongYDieuKhoan');
+        const btnUngTuyen = document.getElementById('btnUngTuyen');
+
+        checkbox.addEventListener('change', function () {
+            btnUngTuyen.disabled = !this.checked;
+        });
+    </script>
+}

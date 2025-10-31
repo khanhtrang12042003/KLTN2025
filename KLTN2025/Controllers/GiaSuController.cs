@@ -21,23 +21,58 @@ namespace KLTN2025.Controllers
         }
 
         // ---------------------- Danh sách lớp mới ------------------------
-        public async Task<IActionResult> DanhSachLopMoi()
+        [HttpGet]
+        public async Task<IActionResult> DanhSachLopMoi(string? monHoc, string? khoiLop, string? khuVuc)
         {
             if (!KiemTraDangNhap()) return ChuyenHuongDangNhap();
 
-            var nguoiDungId = HttpContext.Session.GetInt32("NguoiDungId");
-            var giaSu = await _context.GiaSus.FirstOrDefaultAsync(g => g.NguoiDungId == nguoiDungId.Value);
-
-            var lopList = await _context.LopHocs
+            var query = _context.LopHocs
                 .Include(l => l.PhuHuynh)
                 .Include(l => l.UngTuyens)
-                .Where(l => l.TrangThai != "Đã hoàn thành" && l.TrangThai != "Kết thúc")
-                .OrderByDescending(l => l.NgayTao)
-                .ToListAsync();
+                .Where(l => l.TrangThai != "Đã hoàn thành" && l.TrangThai != "Kết thúc");
 
+            // Lọc theo môn học
+            if (!string.IsNullOrEmpty(monHoc) && monHoc != "Tất cả")
+                query = query.Where(l => l.MonHoc != null && l.MonHoc.Contains(monHoc));
+
+            // Lọc theo khối lớp
+            if (!string.IsNullOrEmpty(khoiLop) && khoiLop != "Tất cả")
+            {
+                if (byte.TryParse(khoiLop, out byte parsedKhoiLop))
+                {
+                    query = query.Where(l => l.KhoiLop == parsedKhoiLop);
+                }
+                else
+                {
+                    // Trường hợp người dùng chọn nhóm (ví dụ: "Lớp 6-9")
+                    if (khoiLop.Contains("1-5"))
+                        query = query.Where(l => l.KhoiLop >= 1 && l.KhoiLop <= 5);
+                    else if (khoiLop.Contains("6-9"))
+                        query = query.Where(l => l.KhoiLop >= 6 && l.KhoiLop <= 9);
+                    else if (khoiLop.Contains("10-12"))
+                        query = query.Where(l => l.KhoiLop >= 10 && l.KhoiLop <= 12);
+                }
+            }
+
+            // Lọc theo khu vực
+            if (!string.IsNullOrEmpty(khuVuc) && khuVuc != "Tất cả")
+                query = query.Where(l => l.DiaDiem != null && l.DiaDiem.Contains(khuVuc));
+
+            var lopList = await query.OrderByDescending(l => l.NgayTao).ToListAsync();
+
+            ViewBag.MonHoc = monHoc;
+            ViewBag.KhoiLop = khoiLop;
+            ViewBag.KhuVuc = khuVuc;
+
+            // Lấy GiaSuId để gắn vào nút Ứng tuyển
+            var nguoiDungId = HttpContext.Session.GetInt32("NguoiDungId");
+            var giaSu = await _context.GiaSus.FirstOrDefaultAsync(g => g.NguoiDungId == nguoiDungId);
             ViewBag.GiaSuId = giaSu?.GiaSuId ?? 0;
+
             return View(lopList);
         }
+
+
 
         // ---------------------- Hồ sơ gia sư ------------------------
         public async Task<IActionResult> HoSoGiaSu()
@@ -63,8 +98,17 @@ namespace KLTN2025.Controllers
                 await _context.SaveChangesAsync();
             }
 
+            // ✅ Nếu đang chờ duyệt thì chuyển qua trang chờ duyệt
+            if (giaSu.TrangThai == "Chờ duyệt")
+                return RedirectToAction("ChoDuyet");
+
+            // ✅ Nếu bị từ chối thì hiển thị lại form với thông báo
+            if (giaSu.TrangThai == "Từ chối")
+                ViewBag.ThongBao = "Hồ sơ của bạn bị từ chối. Vui lòng cập nhật lại thông tin.";
+
             return View(giaSu);
         }
+
 
         // ---------------------- Cập nhật hồ sơ ------------------------
         [HttpPost]
@@ -100,22 +144,26 @@ namespace KLTN2025.Controllers
                 // Upload file
                 if (AnhDaiDien != null && AnhDaiDien.Length > 0)
                 {
-                    var path = Path.Combine("wwwroot/uploads", AnhDaiDien.FileName);
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(AnhDaiDien.FileName);
+                    string path = Path.Combine("wwwroot/uploads", fileName);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         AnhDaiDien.CopyTo(stream);
                     }
-                    giaSu.AnhDaiDien = "/uploads/" + AnhDaiDien.FileName;
+                    giaSu.AnhDaiDien = "/uploads/" + fileName;
+
                 }
 
                 if (AnhBangTotNghiep != null && AnhBangTotNghiep.Length > 0)
                 {
-                    var path = Path.Combine("wwwroot/uploads", AnhBangTotNghiep.FileName);
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(AnhBangTotNghiep.FileName);
+                    string path = Path.Combine("wwwroot/uploads", fileName);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         AnhBangTotNghiep.CopyTo(stream);
                     }
-                    giaSu.BangTotNghiep = "/uploads/" + AnhBangTotNghiep.FileName;
+                    giaSu.BangTotNghiep = "/uploads/" + fileName;
+
                 }
 
                 _context.SaveChanges();

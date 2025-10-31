@@ -1,28 +1,28 @@
-﻿@{
+﻿@model KLTN2025.Models.LopHoc
+
+@{
     ViewData["Title"] = "Ứng tuyển lớp học";
     Layout = "~/Views/Shared/_LayoutGiaSU.cshtml";
 }
 
 <div class="container mt-4 mb-5">
-    <h3 class="fw-bold text-primary mb-3">Ứng tuyển lớp E0074</h3>
+    <h3 class="fw-bold text-primary mb-3">Ứng tuyển lớp @Model.LopHocId</h3>
 
+    ```
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="fw-bold">Tóm tắt lớp học</h5>
             <ul>
-                <li><strong>Môn học:</strong> Toán - Lớp 8</li>
-                <li><strong>Địa chỉ:</strong> Thôn Phượng Đồng, Chương Mỹ, Hà Nội</li>
-                <li><strong>Lịch học:</strong> 2 buổi/tuần (Thứ 3, Thứ 6)</li>
-                <li><strong>Học phí:</strong> 180.000 ₫/buổi</li>
-                <li><strong>Yêu cầu:</strong> Sinh viên nữ</li>
+                <li><strong>Môn học:</strong> @Model.MonHoc - Lớp @Model.KhoiLop</li>
+                <li><strong>Địa chỉ:</strong> @Model.DiaDiem</li>
+                <li><strong>Lịch học:</strong> @Model.LichHoc</li>
+                <li><strong>Học phí:</strong> @string.Format("{0:N0} ₫/buổi", Model.HocPhi)</li>
             </ul>
         </div>
     </div>
 
-    <!-- Chèn điều khoản -->
     @Html.Partial("_DieuKhoanNhanLopPartial")
 
-    <!-- Checkbox xác nhận -->
     <div class="form-check mt-3">
         <input class="form-check-input" type="checkbox" id="dongYDieuKhoan">
         <label class="form-check-label" for="dongYDieuKhoan">
@@ -30,29 +30,33 @@
         </label>
     </div>
 
-    <!-- Nút xác nhận -->
     <div class="mt-3">
         <button id="btnUngTuyen" class="btn btn-warning fw-bold text-white px-4" disabled>
             Xác nhận ứng tuyển
         </button>
-        <a href="/GiaSu/DanhSachLopMoi" class="btn btn-outline-secondary ms-2">Quay lại</a>
+        <a asp-action="DanhSachLopMoi" class="btn btn-outline-secondary ms-2">Quay lại</a>
     </div>
+    ```
+
 </div>
 
 @section Scripts {
-    <script>
-        const checkbox = document.getElementById('dongYDieuKhoan');
-        const btnUngTuyen = document.getElementById('btnUngTuyen');
+     <script>
+                           const checkbox = document.getElementById('dongYDieuKhoan');
+                           const btnUngTuyen = document.getElementById('btnUngTuyen');
 
-        checkbox.addEventListener('change', function () {
-            btnUngTuyen.disabled = !this.checked;
-        });
+                           ```
+                               checkbox.addEventListener('change', function () {
+                                   btnUngTuyen.disabled = !this.checked;
+                               });
 
-        btnUngTuyen.addEventListener('click', function () {
-            if (checkbox.checked) {
-                alert('✅ Bạn đã ứng tuyển thành công lớp này!\nTrung tâm sẽ liên hệ với bạn sớm nhất.');
-                window.location.href = '/GiaSu/DanhSachLopMoi';
-            }
-        });
+                               btnUngTuyen.addEventListener('click', function () {
+                                   if (checkbox.checked) {
+                                       alert('✅ Bạn đã ứng tuyển thành công lớp này!\nTrung tâm sẽ liên hệ với bạn sớm nhất.');
+                                       window.location.href = '/GiaSu/DanhSachLopMoi';
+                                   }
+                               });
     </script>
+```
+
 }
