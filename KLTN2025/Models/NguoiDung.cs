@@ -17,19 +17,19 @@ public partial class NguoiDung
 
     public bool GioiTinh { get; set; }
 
-    public string Sdt { get; set; } = null!;
+    public string? Sdt { get; set; }
 
     public string VaiTro { get; set; } = null!;
 
     public DateTime TaoVaoLuc { get; set; }
 
+    public string? DiaChi { get; set; }
+
+    // 🔗 Quan hệ
     public virtual ICollection<GiaSu> GiaSus { get; set; } = new List<GiaSu>();
-
     public virtual ICollection<NhanSu> NhanSus { get; set; } = new List<NhanSu>();
-
     public virtual ICollection<PhanHoi> PhanHois { get; set; } = new List<PhanHoi>();
-
-    public virtual ICollection<PhuHuynh> PhuHuynhs { get; set; } = new List<PhuHuynh>();
-
     public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
+    public virtual ICollection<HoSoGiaSu> HoSoGiaSus { get; set; } = new List<HoSoGiaSu>();
+    public virtual ICollection<LopHoc> LopHocsPhuHuynh { get; set; } = new List<LopHoc>();
 }

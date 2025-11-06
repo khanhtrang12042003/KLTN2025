@@ -2,13 +2,15 @@
 
 @{
     ViewData["Title"] = "Chi tiết lớp học";
-    Layout = "~/Views/Shared/_LayoutGiaSU.cshtml";
+    Layout = "~/Views/Shared/_LayoutGiaSu.cshtml";
 }
 
 <div class="container mt-4 mb-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="DanhSachLopMoi">Danh sách lớp mới</a></li>
+            <li class="breadcrumb-item">
+                <a asp-action="DanhSachLopMoi">Danh sách lớp mới</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Lớp @Model.LopHocId</li>
         </ol>
     </nav>
@@ -28,12 +30,16 @@
 
             <p><i class="bi bi-book"></i> <strong>@Model.MonHoc – Lớp @Model.KhoiLop</strong></p>
             <p><i class="bi bi-geo-alt"></i> @Model.DiaDiem</p>
-            <p><i class="bi bi-cash-coin"></i> @string.Format("{0:N0} ₫/buổi", Model.HocPhi), @Model.SoBuoiHoc buổi/tuần</p>
+            <p>
+                <i class="bi bi-cash-coin"></i>
+                @string.Format("{0:N0} ₫/buổi", Model.HocPhi),
+                <span>3 buổi/tuần</span>
+            </p>
             <p><i class="bi bi-clock"></i> @Model.LichHoc</p>
 
             <div class="alert alert-info mt-3">
                 <strong>Mức thu nhập dự kiến:</strong>
-                @string.Format("{0:N0} ₫ / tháng", (Model.HocPhi ?? 0) * (Model.SoBuoiHoc ?? 0) * 4)
+                @string.Format("{0:N0} ₫ / tháng", (Model.HocPhi ?? 0) * 3 * 4)
             </div>
 
             <!-- Form ứng tuyển -->

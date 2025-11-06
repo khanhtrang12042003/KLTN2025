@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KLTN2025.Data;
 using KLTN2025.Models;
 using KLTN2025.Services;
 using System.Security.Cryptography;
@@ -21,49 +20,40 @@ namespace KLTN2025.Controllers
             _emailService = emailService;
         }
 
-        // ==================== CHỌN VAI TRÒ ====================
-        public IActionResult ChonVaiTro()
-        {
-            return View();
-        }
 
-        // ==================== ĐĂNG KÝ ====================
+
+        // ==================== ĐĂNG KÝ (GET) ====================
         [HttpGet]
-        public IActionResult DangKy(string role)
+        public IActionResult DangKy()
         {
-            if (string.IsNullOrEmpty(role))
-                return RedirectToAction("ChonVaiTro");
-
-            ViewBag.Role = role;
             return View();
         }
 
+        // ==================== ĐĂNG KÝ (POST) ====================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DangKy(string hoTen, string tenDangNhap, string email, string matKhau, string role)
         {
             if (string.IsNullOrEmpty(tenDangNhap) || string.IsNullOrEmpty(matKhau))
             {
-                ViewBag.ThongBao = "Tên đăng nhập và mật khẩu không được để trống!";
-                ViewBag.Role = role;
+                ViewBag.ThongBao = "⚠️ Tên đăng nhập và mật khẩu không được để trống!";
                 return View();
             }
 
             var tonTai = _context.NguoiDungs.FirstOrDefault(u => u.TenDangNhap == tenDangNhap || u.Email == email);
             if (tonTai != null)
             {
-                ViewBag.ThongBao = "Tên đăng nhập hoặc email đã tồn tại!";
-                ViewBag.Role = role;
+                ViewBag.ThongBao = "❌ Tên đăng nhập hoặc email đã tồn tại!";
                 return View();
             }
 
             var nguoiDung = new NguoiDung
             {
-                TenDangNhap = tenDangNhap,
-                MaKhauHash = MaHoaMatKhau(matKhau),
-                Email = email,
                 HoTen = hoTen,
-                VaiTro = role,
+                TenDangNhap = tenDangNhap,
+                Email = email,
+                MaKhauHash = MaHoaMatKhau(matKhau),
+                VaiTro = role, // "GiaSu" hoặc "PhuHuynh"
                 GioiTinh = false,
                 Sdt = "",
                 TaoVaoLuc = DateTime.Now
@@ -72,52 +62,30 @@ namespace KLTN2025.Controllers
             _context.NguoiDungs.Add(nguoiDung);
             _context.SaveChanges();
 
-            TempData["UserId"] = nguoiDung.NguoiDungId;
-            TempData["ThongBao"] = $"🎉 Đăng ký {(role == "giasu" ? "Gia sư" : "Phụ huynh")} thành công! Mời bạn đăng nhập để tiếp tục.";
-            return RedirectToAction("XacNhanDangKy");
-
+            TempData["ThongBao"] = $"🎉 Đăng ký {role} thành công! Mời bạn đăng nhập để tiếp tục.";
+            return RedirectToAction("DangNhap");
         }
 
-        // ==================== XÁC NHẬN ĐĂNG KÝ ====================
-        [HttpGet]
-        public IActionResult XacNhanDangKy()
-        {
-            int? userId = TempData["UserId"] as int?;
-            if (userId == null)
-                return RedirectToAction("ChonVaiTro");
-
-            var user = _context.NguoiDungs.FirstOrDefault(u => u.NguoiDungId == userId);
-            if (user == null)
-                return RedirectToAction("ChonVaiTro");
-
-            ViewBag.HoTen = user.HoTen;
-            ViewBag.Email = user.Email;
-            return View();
-        }
-
-        // ==================== ĐĂNG NHẬP ====================
         // ==================== ĐĂNG NHẬP (GET) ====================
         [HttpGet]
-        public IActionResult DangNhap(string? role)
+        public IActionResult DangNhap()
         {
-            ViewBag.Role = role ?? "phuhuynh";
             return View();
         }
 
+        // ==================== ĐĂNG NHẬP (POST) ====================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DangNhap(string emailOrUsername, string password, string role)
         {
             if (string.IsNullOrEmpty(emailOrUsername) || string.IsNullOrEmpty(password))
             {
-                ViewBag.ThongBao = "Vui lòng nhập đầy đủ thông tin đăng nhập!";
-                ViewBag.Role = role;
+                ViewBag.ThongBao = "⚠️ Vui lòng nhập đầy đủ thông tin đăng nhập!";
                 return View();
             }
 
             string mkMaHoa = MaHoaMatKhau(password);
 
-            // ✅ Cho phép đăng nhập bằng Email hoặc Tên đăng nhập
             var nguoiDung = _context.NguoiDungs.FirstOrDefault(u =>
                 (u.Email == emailOrUsername || u.TenDangNhap == emailOrUsername)
                 && u.MaKhauHash == mkMaHoa
@@ -125,30 +93,32 @@ namespace KLTN2025.Controllers
 
             if (nguoiDung == null)
             {
-                ViewBag.ThongBao = "Sai tài khoản hoặc mật khẩu, hoặc bạn chọn sai vai trò!";
-                ViewBag.Role = role;
+                ViewBag.ThongBao = "❌ Sai tài khoản hoặc mật khẩu, hoặc vai trò không khớp!";
                 return View();
             }
 
-            // ✅ Lưu session đăng nhập
+            // ✅ Lưu session
+            HttpContext.Session.SetInt32("NguoiDungId", nguoiDung.NguoiDungId);
             HttpContext.Session.SetString("UserName", nguoiDung.HoTen);
             HttpContext.Session.SetString("Role", nguoiDung.VaiTro);
-            HttpContext.Session.SetInt32("NguoiDungId", nguoiDung.NguoiDungId); // ✅ đổi từ UserId thành NguoiDungId
 
-
-            // ✅ Chuyển hướng tùy vai trò
+            // ✅ Điều hướng theo vai trò
             if (nguoiDung.VaiTro.Equals("GiaSu", StringComparison.OrdinalIgnoreCase))
             {
-                HttpContext.Session.SetString("Role", "GiaSu");
                 return RedirectToAction("GiaSuTrangChu", "GiaSu");
             }
             else if (nguoiDung.VaiTro.Equals("PhuHuynh", StringComparison.OrdinalIgnoreCase))
             {
-                HttpContext.Session.SetString("Role", "PhuHuynh");
                 return RedirectToAction("PhuHuynhTrangChu", "PhuHuynh");
             }
 
-            return RedirectToAction("ChonVaiTro");
+            // Nếu là nhân viên trung tâm (chạy local)
+            if (nguoiDung.VaiTro.Equals("NhanVien", StringComparison.OrdinalIgnoreCase))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return RedirectToAction("DangNhap");
         }
 
         // ==================== QUÊN MẬT KHẨU (GET) ====================

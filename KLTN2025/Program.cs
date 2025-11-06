@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using KLTN2025.Data;
 using KLTN2025.Services;
+using KLTN2025.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("KLTNConnection");
+
 
 // 1️⃣ Đăng ký dịch vụ (trước khi Build)
 builder.Services.AddDbContext<KLTNContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("KLTNConnection")));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor(); // ✅ Dùng cho session, cookie, context
