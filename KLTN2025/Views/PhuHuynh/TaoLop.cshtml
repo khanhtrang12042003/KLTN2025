@@ -1,0 +1,59 @@
+@using KLTN2025.DTOs
+@model TaoLopDTO;
+
+@{
+    ViewData["title"] = "Tạo lớp học";
+    ViewData["css"] = "Validation.css";
+    Layout = "_LayoutPhuHuynh";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 p-4">
+                <h3 class="fw-bold text-center text-primary mb-4">Tạo lớp</h3>
+                <form asp-action="TaoLop" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3">
+                        <label for="MonHoc" class="form-label fw-semibold">Môn học</label>
+                        <input type="text" asp-for="MonHoc" class="form-control" id="MonHoc">
+                        <span class="d-block invalid-feedback" asp-validation-for="MonHoc"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="KhoiLop" class="form-label fw-semibold">Khối lớp</label>
+                        <input type="number" asp-for="KhoiLop" class="form-control" id="KhoiLop">
+                        <span class="d-block invalid-feedback" asp-validation-for="KhoiLop"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="DiaDiem" class="form-label fw-semibold">Địa điểm</label>
+                        <input type="text" asp-for="DiaDiem" class="form-control" id="DiaDiem">
+                        <span class="d-block invalid-feedback" asp-validation-for="DiaDiem"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="LichHoc" class="form-label fw-semibold">Lịch học</label>
+                        <input type="text" asp-for="LichHoc" class="form-control" id="LichHoc">
+                    </div>
+                    <button class="btn btn-success w-100 py-2 text-center">Tạo lớp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelectorAll("input").forEach(input => {
+                    input.addEventListener("input", () => {
+                        const msg = document.querySelector(`[data-valmsg-for='${input.name}']`)
+                        if (msg) {
+                            msg.textContent = "";
+                            msg.classList.remove("d-block", "field-validation-error");
+                            msg.classList.add("d-none");
+                        }
+                        input.classList.remove("input-validation-error")
+                    })
+                })
+            }
+        </script>
+    }
+</div>

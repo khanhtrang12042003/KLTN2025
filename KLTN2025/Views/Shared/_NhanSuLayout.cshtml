@@ -33,7 +33,7 @@
                 class="@(ViewContext.RouteData.Values["action"].ToString() == "PhanCongLopHoc" ? "active" : "")">📚 Phân
                 công lớp học</a>
         </nav>
-        <a asp-controller="/TaiKhoan/DangXuat" class="logout-btn">🚪 Đăng xuất</a>
+        <a asp-controller="TaiKhoan" asp-action="DangNhap" class="text-decoration-none logout-btn">🚪 Đăng xuất</a>
     </div>
 
     <div class="header">

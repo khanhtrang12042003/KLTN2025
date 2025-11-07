@@ -7,8 +7,8 @@ public partial class LopHoc
 {
     public int LopHocId { get; set; }
     public int PhuHuynhId { get; set; }
-    public int GiaSuId { get; set; }
-    public int NhanSuId { get; set; }
+    public int? GiaSuId { get; set; }
+    public int? NhanSuId { get; set; }
     public string? MonHoc { get; set; }
     public byte? KhoiLop { get; set; }
     public string? DiaDiem { get; set; }

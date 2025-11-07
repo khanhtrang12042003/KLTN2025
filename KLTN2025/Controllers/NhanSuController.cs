@@ -14,6 +14,7 @@ namespace KLTN2025.Controllers
             _context = context;
         }
         // 🏠 Trang tổng quan nhân sự
+        [KiemTraDangNhap]
         public IActionResult Index()
         {
             // Sau này có thể truyền dữ liệu thống kê thực tế ở đây
@@ -82,6 +83,7 @@ namespace KLTN2025.Controllers
         }
 
         // 📄 Chi tiết hồ sơ gia sư (phụ trợ UC11)
+        [KiemTraDangNhap]
         [HttpGet]
         public IActionResult ChiTietHoSo(int id)
         {
@@ -93,6 +95,7 @@ namespace KLTN2025.Controllers
 
 
         // 📑 UC12 - Quản lý hợp đồng & chính sách
+        [KiemTraDangNhap]
         [HttpGet]
         public IActionResult QuanLyHopDongChinhSach()
         {
@@ -101,6 +104,7 @@ namespace KLTN2025.Controllers
         }
 
         // 📚 UC19 - Phân công lớp học
+        [KiemTraDangNhap]
         [HttpGet]
         public IActionResult PhanCongLopHoc()
         {

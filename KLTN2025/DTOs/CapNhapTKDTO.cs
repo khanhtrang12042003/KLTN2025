@@ -8,4 +8,5 @@ public class CapNhapTKDTO
     public string SDT { get; set; } = default!;
     public string MatKhau { get; set; } = default!;
     public string GioiTinh { get; set; } = default!;
+    public string DiaChi { get; set; } = default!;
 }

@@ -1,0 +1,39 @@
+@using KLTN2025.Models;
+@model IEnumerable<LopHoc>;
+
+@{
+    ViewData["title"] = "Lớp học chưa duyệt";
+    Layout = "_LayoutPhuHuynh";
+}
+<div class="container my-4">
+    <h3 class="text-center mb-4">📚 Danh sách lớp học chờ duyệt</h3>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-3">
+            @foreach (var lop in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Mã lớp học: @lop.LopHocId</h5>
+                            <p class="card-text">
+                                <i class="bi bi-geo-alt"></i> Môn học: @lop.MonHoc <br />
+                                <i class="bi bi-geo-alt"></i> Khối lớp: @lop.KhoiLop <br />
+                                <i class="bi bi-geo-alt"></i> Địa điểm: @lop.DiaDiem <br />
+                                <i class="bi bi-clock"></i> Tạo lúc: @lop.NgayTao.ToString("dd/MM/yyyy")
+                            </p>
+                            <span class="badge bg-warning text-dark mb-2">Đang chờ duyệt</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-info-circle"></i> Hiện chưa có lớp học nào đang chờ duyệt.
+        </div>
+    }
+</div>

@@ -182,6 +182,7 @@ namespace KLTN2025.Controllers
         }
 
         // ==================== ĐẶT LẠI MẬT KHẨU (GET) ====================
+        [KiemTraDangNhap]
         [HttpGet]
         public IActionResult DatLaiMatKhau(string email, string token)
         {
@@ -285,6 +286,7 @@ namespace KLTN2025.Controllers
         }
 
         // Cập nhập thông tin
+        [KiemTraDangNhap]
         [HttpGet]
         public async Task<IActionResult> CapNhapTaiKhoan()
         {
@@ -298,14 +300,19 @@ namespace KLTN2025.Controllers
             {
                 return NotFound("Người dùng không tồn tại");
             }
-
+            ViewBag.Layout = nguoiDung.VaiTro switch
+            {
+                "GiaSu" => "_LayoutGiaSu",
+                "PhuHuynh" => "_LayoutPhuHuynh",
+                _ => "_Layout"
+            };
             CapNhapTKDTO capNhapTKDTO = new CapNhapTKDTO
             {
                 NguoiDungId = nguoiDung.NguoiDungId,
                 HoTen = nguoiDung.HoTen,
                 Email = nguoiDung.Email,
                 GioiTinh = nguoiDung.GioiTinh ? "Nữ" : "Nam",
-                SDT = nguoiDung.Sdt
+                SDT = nguoiDung?.Sdt ?? ""
             };
             return View(capNhapTKDTO);
         }
