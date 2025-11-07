@@ -10,6 +10,4 @@ public class DangNhapDTO
     [Required(ErrorMessage = "Mật khẩu không được để trống")]
     public string MatKhau { get; set; } = default!;
 
-    [Required]
-    public string VaiTro { get; set; } = default!;
 }

@@ -34,10 +34,8 @@
             <div class="user-info d-flex align-items-center">
                 @if (!string.IsNullOrEmpty(userName))
                 {
-                    <span class="me-3">Xin chào,
-                        <a class="nav-link" asp-controller="TaiKhoan" asp-action="CapNhapTaiKhoan">
-                            <strong id="HoTen"> @userName </strong></a>
-                    </span>
+                    <a class="nav-link me-3" asp-controller="TaiKhoan" asp-action="CapNhapTaiKhoan">
+                        <strong id="HoTen"> @userName </strong></a>
                     <a asp-controller="TaiKhoan" asp-action="DangXuat" class="btn btn-outline-primary btn-sm">Đăng xuất</a>
                 }
                 else
@@ -50,7 +48,7 @@
     </header>
 
     <!-- Nội dung -->
-    <main class="container py-4">
+    <main class="container">
         @RenderBody()
     </main>
 

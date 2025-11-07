@@ -22,6 +22,9 @@ public class DangKyDTO
     [MinLength(8, ErrorMessage = "Mật khẩu tối thiểu 8 kí tự")]
     public string MatKhau { get; set; } = default!;
 
-    [Required]
+    [Required(ErrorMessage = "Hãy chọn giới tính của mình nhé")]
+    public bool? GioiTinh { get; set; } = default!;
+
+    [Required(ErrorMessage = "Hãy chọn vai trò của mình nhé")]
     public string VaiTro { get; set; } = default!;
 }

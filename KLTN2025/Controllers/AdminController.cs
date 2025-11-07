@@ -59,5 +59,30 @@ namespace KLTN2025.Controllers
             ViewBag.UserName = "Admin Bảo Tuân";
             return View();
         }
+        [HttpGet]
+        public IActionResult DangNhapAdMin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DangNhapAdMin(string tenDangNhap, string matKhau)
+        {
+            // Tài khoản admin tĩnh chạy local
+            string adminUser = "admin";
+            string adminPass = "123456";
+
+            if (tenDangNhap == adminUser && matKhau == adminPass)
+            {
+                // Lưu trạng thái đăng nhập (tạm thời qua Session)
+                HttpContext.Session.SetString("Admin", adminUser);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ThongBao = "Sai tên đăng nhập hoặc mật khẩu!";
+                return View();
+            }
+        }
+
     }
 }
