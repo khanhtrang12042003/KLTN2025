@@ -118,9 +118,9 @@ namespace KLTN2025.Controllers
             }
 
             // Nếu là nhân viên trung tâm (chạy local)
-            if (nguoiDung.VaiTro.Equals("NhanVien", StringComparison.OrdinalIgnoreCase))
+            if (nguoiDung.VaiTro.Equals("NhanSu", StringComparison.OrdinalIgnoreCase))
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "NhanSu");
             }
 
             return RedirectToAction("DangNhap");

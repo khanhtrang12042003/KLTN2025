@@ -1,9 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KLTN2025.DTOs;
+using KLTN2025.Models;
+using Microsoft.AspNetCore.Mvc;
+using KLTN2025.Services;
 
 namespace KLTN2025.Controllers
 {
     public class NhanSuController : Controller
     {
+        private readonly KLTNContext _context;
+
+        public NhanSuController(KLTNContext context)
+        {
+            _context = context;
+        }
         // 🏠 Trang tổng quan nhân sự
         public IActionResult Index()
         {
@@ -12,11 +21,63 @@ namespace KLTN2025.Controllers
             return View();
         }
 
-        // 📋 UC11 - Duyệt hồ sơ gia sư
         [HttpGet]
-        public IActionResult DuyetHoSoGiaSu()
+        public IActionResult DangKy()
         {
-            ViewBag.UserName = "Nguyễn Thị Hạnh";
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DangKy(DangKyDTO dangKyDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(dangKyDTO);
+            }
+
+            var tonTai = _context.NguoiDungs.FirstOrDefault
+            (u => u.TenDangNhap == dangKyDTO.TenDangNhap || u.Email == dangKyDTO.Email);
+            if (tonTai != null)
+            {
+                ViewBag.ThongBao = "Tên đăng nhập hoặc email đã tồn tại!";
+                return View();
+            }
+
+            var nguoiDung = new NguoiDung
+            {
+                TenDangNhap = dangKyDTO.TenDangNhap,
+                MaKhauHash = Hashpassword.MaHoaMatKhau(dangKyDTO.MatKhau),
+                Email = dangKyDTO.Email,
+                HoTen = dangKyDTO.HoTen,
+                VaiTro = dangKyDTO.VaiTro,
+                GioiTinh = dangKyDTO?.GioiTinh ?? false,
+                Sdt = "",
+                TaoVaoLuc = DateTime.Now
+            };
+
+            _context.NguoiDungs.Add(nguoiDung);
+            _context.SaveChanges();
+            return RedirectToAction("XacNhanDangKy", "TaiKhoan");
+        }
+
+
+        [HttpGet]
+        public IActionResult DangNhap()
+        {
+            return RedirectToAction("DangNhap", "TaiKhoan");
+        }
+        // 📋 UC11 - Duyệt hồ sơ gia sư
+        [HttpPost]
+        public IActionResult DuyetHoSo()
+        {
+            string name = "Nguyễn Thị Hạnh";
+            return Json(new { name });
+        }
+
+        [HttpGet]
+        public IActionResult XemHoSoGiaSu()
+        {
             return View();
         }
 
@@ -29,6 +90,7 @@ namespace KLTN2025.Controllers
             // TODO: lấy thông tin chi tiết gia sư từ DB
             return View();
         }
+
 
         // 📑 UC12 - Quản lý hợp đồng & chính sách
         [HttpGet]

@@ -1,0 +1,122 @@
+@using KLTN2025.DTOs
+@model DangKyDTO
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+    ViewData["css"] = "Validation.css";
+    var thongBao = ViewBag.ThongBao as string;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    if (!string.IsNullOrEmpty(thongBao))
+    {
+        <div id="alert-message" class="custom-alert">
+            @thongBao
+        </div>
+    }
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 p-4">
+                <h3 class="fw-bold text-center text-primary mb-4">Đăng ký tài khoản</h3>
+
+                <form asp-action="DangKy" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Họ và tên</label>
+                        <input type="text" asp-for="HoTen" class="form-control" />
+                        <span class="d-block invalid-feedback" asp-validation-for="HoTen"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="text" asp-for="Email" class="form-control" />
+                        <span class="d-block invalid-feedback" asp-validation-for="Email"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Tên đăng nhập</label>
+                        <input type="text" asp-for="TenDangNhap" class="form-control" />
+                        <span class="d-block invalid-feedback" asp-validation-for="TenDangNhap"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Mật khẩu</label>
+                        <input type="password" asp-for="MatKhau" class="form-control" />
+                        <span class="d-block invalid-feedback" asp-validation-for="MatKhau"></span>
+                    </div>
+                    @* Giới tính *@
+                    <div class="mb-3 row">
+                        <label class="form-label fw-semibold col-3">Giới tính</label>
+                        <div class="ms-3 d-inline-flex gap-3 col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="GioiTinh" id="Nam"
+                                    value="false" />
+                                <label class="form-check-label" for="Nam">Nam</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="GioiTinh" id="Nu" value="true" />
+                                <label class="form-check-label" for="Nu">Nữ</label>
+                            </div>
+                        </div>
+                        <span class="d-block invalid-feedback" asp-validation-for="GioiTinh"></span>
+                    </div>
+
+                    @* Vai trò *@
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold col-3">Bạn là</label>
+                        <div class="ms-3 d-flex gap-3 col">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="VaiTro" id="NhanSu"
+                                    value="NhanSu" />
+                                <label class="form-check-label" for="NhanSu">Nhân sự</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="VaiTro" id="TuVanPH"
+                                    value="TuVanPH" />
+                                <label class="form-check-label" for="TuVanPH">Tư vấn phụ huynh</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" asp-for="VaiTro" id="CSKH" value="CSKH" />
+                                <label class="form-check-label" for="CSKH">Chăm sóc khách hàng</label>
+                            </div>
+                        </div>
+                        <span class="d-block invalid-feedback" asp-validation-for="VaiTro"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2">Đăng ký</button>
+                </form>
+
+                @section Scripts {
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            // Ẩn các thông báo lỗi khi gõ trong phần input
+                            document.querySelectorAll("input").forEach(input => {
+                                input.addEventListener("input", () => {
+                                    const msg = document.querySelector(`[data-valmsg-for='${input.name}']`)
+                                    if (msg) {
+                                        msg.textContent = "";
+                                        msg.classList.remove("d-block", "field-validation-error");
+                                        msg.classList.add("d-none");
+                                    }
+                                    input.classList.remove("input-validation-error")
+                                })
+                            })
+
+                            const alert = document.getElementById("alert-message");
+                            if (alert) {
+                                setTimeout(() => alert.classList.add("show"), 100);
+
+                                setTimeout(() => {
+                                    alert.classList.remove("show");
+                                    setTimeout(() => alert.remove(), 500)
+                                }, 5000)
+                            }
+                        })
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+</div>
